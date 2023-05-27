@@ -1,0 +1,70 @@
+﻿@using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+@using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
+@model EditCarWorkshopCommand
+
+<h1><i>@Model.Name</i> - Edit</h1>
+<hr>
+
+<div class="row">
+    <div class="col-md-3">
+        <form asp-controller="CarWorkshop" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="EncodedName" />
+
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="Description">Description</label>
+                <input class="form-control" type="text" asp-for="Description">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="About">About</label>
+                <input class="form-control" type="text" asp-for="About">
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="PhoneNumber">Phone Number</label>
+                <input class="form-control" type="text" asp-for="PhoneNumber">
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="City">City</label>
+                <input class="form-control" type="text" asp-for="City">
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="Street">Street</label>
+                <input class="form-control" type="text" asp-for="Street">
+                <span asp-validation-for="Street" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="PostalCode">PostalCode</label>
+                <input class="form-control" type="text" asp-for="PostalCode">
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a asp-controller="CarWorkshop" asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-9">
+        <partial name="_CreateCarWorkshopService" model="new CreateCarWorkshopServiceCommand { CarWorkshopEncodedName = Model.EncodedName }" />
+        <div id="services" class="row" data-encoded-name="@Model.EncodedName"><!-- Code From site.js --></div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/CarWorkshop/Edit.js"></script>
+    <script src="~/js/CarWorkshop/_GetAllCarWorkshopServices.js"></script>
+}

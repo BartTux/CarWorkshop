@@ -1,0 +1,69 @@
+﻿@using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+@model CarWorkshopServicesViewModel
+@{
+    var serviceNumber = 1;
+}
+
+<div id="modalPlaceholder"></div>
+
+<select class="form-select" asp-for="@Model.QueryResult.PageSize" style="width: 85px;" aria-label="Select sort option">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+</select>
+
+<table id="getCarWorkshopsTable" class="table mb-3">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Description</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var result in Model.QueryResult.Data)
+    {
+        <tr>
+            <th scope="row">@serviceNumber</th>
+            <td>@result.Cost</td>
+            <td>@result.Description</td>
+            <td>
+                <a href="#" class="details" title="Details" data-toggle="tooltip"><i class="bi bi-eye"></i></a>
+                <a href="#" class="edit mx-3" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
+                <button type="button" class="custom-modal-button delete" data-url="@Url.Action($"CarWorkshopService/Delete/{ result.Id }")"> 
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </td>
+        </tr>
+
+        serviceNumber++;
+    }
+    </tbody>
+</table>
+
+@if (Model.QueryResult.TotalCount > Model.QueryResult.PageSize)
+{
+    <nav aria-label="...">
+        <ul class="pagination pagination-sm">
+
+            <li class="page-item @(!Model.QueryResult.HasPreviousPage ? "disabled" : "")">
+                <button class="page-link"><i class="bi bi-arrow-left-square-fill"></i></button>
+            </li>
+        
+            @for (int i = 1; i <= Model.QueryResult.TotalPages; i++)
+            {
+                <li class="page-item">
+                    <button class="page-link @(i == Model.QueryResult.PageNumber ? "bg-primary text-white" : "")" data-page-number="@i">@i</button>
+                </li>
+            }
+
+            <li class="page-item @(!Model.QueryResult.HasNextPage ? "disabled" : "")">
+                <button class="page-link"><i class="bi bi-arrow-right-square-fill"></i></button>
+            </li>
+        </ul>
+    </nav>
+}
+

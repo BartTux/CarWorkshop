@@ -1,0 +1,28 @@
+﻿@using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+@model DeleteCarWorkshopServiceCommand
+
+<!-- Modal -->
+<div class="modal custom-modal" id="deleteCarWorkshopServiceModal" tabindex="-1" role="dialog" aria-labelledby="deleteCarWorkshopServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-action="DeleteService" asp-route-serviceId="@Model.Id" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCarWorkshopServiceModalLabel">Delete carworkshop service</h5>
+                    <button type="button" class="custom-modal-close-button btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input asp-for="Id" class="form-control" type="hidden" />
+
+                    <p>Are you sure you want to delete this item?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

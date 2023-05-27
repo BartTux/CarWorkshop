@@ -1,0 +1,73 @@
+﻿@using CarWorkshop.Application.Models
+@model CarWorkshopDTO
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>@Model.Name Details</h1>
+<hr>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PostalCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @if (Model.IsEditable)
+    {
+        <a class="btn btn-primary"
+            asp-controller="CarWorkshop"
+            asp-action="Edit"
+            asp-route-encodedName="@Model.EncodedName">Edit</a>
+    }
+    
+    <a asp-controller="CarWorkshop" asp-action="Index">Back to List</a>
+</div>
+
+<div id="services" class="row" data-encoded-name="@Model.EncodedName"><!-- Code From site.js --></div>
+
+@section Scripts {
+    <script src="~/js/CarWorkshop/Details.js"></script>
+}
