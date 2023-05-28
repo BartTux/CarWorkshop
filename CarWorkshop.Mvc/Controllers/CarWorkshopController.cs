@@ -107,6 +107,27 @@ public class CarWorkshopController : Controller
         return PartialView("_GetAllCarWorkshopServices", viewModel);
     }
 
+    [HttpGet("{controller}/CarWorkshopService/Edit/{serviceId}")]
+    [Authorize(Roles = "Owner")]
+    public async Task<IActionResult> EditService([FromRoute] int serviceId)
+    {
+        var carWorkshopServiceDto = await _mediator.Send(new GetCarWorkshopServiceQuery(serviceId));
+        var command = _mapper.Map<EditCarWorkshopServiceCommand>(carWorkshopServiceDto);
+
+        return PartialView("_EditCarWorkshopService", command);
+    }
+
+    [HttpPost("{controller}/CarWorkshopService/Edit/{serviceId}")]
+    [Authorize(Roles = "Owner")]
+    public async Task<IActionResult> EditService([FromRoute] int serviceId,
+                                                 [FromForm] EditCarWorkshopServiceCommand command)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        await _mediator.Send(command);
+        return Ok();
+    }
+
     [HttpGet("{controller}/CarWorkshopService/Delete/{serviceId}")]
     [Authorize(Roles = "Owner")]
     public IActionResult DeleteService([FromRoute] int serviceId)

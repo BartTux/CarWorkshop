@@ -7,36 +7,37 @@ using MediatR;
 namespace CarWorkshop.Application.CQRS.CarWorkshopServices.QueryHandlers;
 
 public class GetAllCarWorkshopServicesQueryHandler
-    : IRequestHandler<GetAllCarWorkshopServicesQuery, QueryResultDTO<CarWorkshopServiceDTO>>
+    : IRequestHandler<GetAllCarWorkshopServicesQuery, QueryResponse<CarWorkshopServiceDTO>>
 {
     private readonly IMapper _mapper;
-    private readonly ICarWorkshopServiceRepository _carWorkshopServiceRepository;
+    private readonly ICarWorkshopServiceRepository _repository;
 
     public GetAllCarWorkshopServicesQueryHandler(IMapper mapper,
-                                                 ICarWorkshopServiceRepository carWorkshopServiceRepository)
+                                                 ICarWorkshopServiceRepository repository)
     {
         _mapper = mapper;
-        _carWorkshopServiceRepository = carWorkshopServiceRepository;
+        _repository = repository;
     }
 
-    public async Task<QueryResultDTO<CarWorkshopServiceDTO>> Handle(GetAllCarWorkshopServicesQuery request,
+    public async Task<QueryResponse<CarWorkshopServiceDTO>> Handle(GetAllCarWorkshopServicesQuery request,
                                                                  CancellationToken cancellationToken)
     {
-        var queryResult = await _carWorkshopServiceRepository
-            .GetByEncodedName(
-                request.CarWorkshopEncodedName,
-                request.PageNumber,
-                request.PageSize
-            );
+        var queryResult = await _repository.GetByEncodedName(
+            request.CarWorkshopEncodedName,
+            request.PageNumber,
+            request.PageSize
+        );
 
-        var carWorkshopServiceDtos = queryResult.Data.Select(c => new CarWorkshopServiceDTO
-        {
-            Id = c.Id,
-            Description = c.Description,
-            Cost = c.Cost
-        }).ToList();
+        var carWorkshopServiceDtos = queryResult.Data
+            .Select(c => new CarWorkshopServiceDTO
+            {
+                Id = c.Id,
+                Description = c.Description,
+                Cost = c.Cost
+            })
+            .ToList();
 
-        var queryResultDto = new QueryResultDTO<CarWorkshopServiceDTO>
+        var queryResultDto = new QueryResponse<CarWorkshopServiceDTO>
         {
             Data = carWorkshopServiceDtos,
             TotalCount = queryResult.TotalCount,

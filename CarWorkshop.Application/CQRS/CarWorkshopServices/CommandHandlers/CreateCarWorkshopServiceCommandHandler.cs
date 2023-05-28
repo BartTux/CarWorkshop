@@ -28,7 +28,7 @@ public class CreateCarWorkshopServiceCommandHandler : IRequestHandler<CreateCarW
         var user = _userContextService.GetCurrentUser();
 
         if (user is null
-            || carWorkshop.CreatedById != user.Id && !user.IsInRole("Moderator")) return;
+            || carWorkshop.CreatedById != user.Id && !user.IsInRole("Owner")) return;
 
         var carWorkshopService = new CarWorkshopService
         {

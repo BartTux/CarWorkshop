@@ -6,5 +6,5 @@ public class CarWorkshopServicesViewModel
 {
     public string EncodedName { get; set; } = default!;
 
-    public QueryResultDTO<CarWorkshopServiceDTO> QueryResult { get; set; } = default!; 
+    public QueryResponse<CarWorkshopServiceDTO> QueryResult { get; set; } = default!; 
 }

@@ -2,6 +2,7 @@
 using CarWorkshop.Domain.Entities;
 using CarWorkshop.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace CarWorkshop.Infrastructure.Repositories;
 
@@ -14,10 +15,11 @@ public class CarWorkshopServiceRepository : ICarWorkshopServiceRepository
         _dbContext = dbContext;
     }
 
-    public async Task<IEnumerable<CarWorkshopService>> GetByCarWorkshopId(int carWorkshopId)
+    public async Task<CarWorkshopService> GetById(int id)
         => await _dbContext.Services
-            .Where(x => x.CarWorkshopId == carWorkshopId)
-            .ToListAsync();
+            .FirstOrDefaultAsync(x => x.Id == id)
+            ?? throw new Exception($"Cannot find service by id: { id }");
+            
 
     public async Task<QueryResult<CarWorkshopService>> GetByEncodedName(string encodedName,
                                                                         int pageNumber,
@@ -48,11 +50,13 @@ public class CarWorkshopServiceRepository : ICarWorkshopServiceRepository
     {
         var service = await _dbContext.Services
             .FirstOrDefaultAsync(x => x.Id == id)
-            ?? throw new Exception($"Cannot find service by id: {id}");
+            ?? throw new Exception($"Cannot find service by id: { id }");
 
         _dbContext.Services.Attach(service);
         _dbContext.Services.Remove(service);
 
         await _dbContext.SaveChangesAsync();
     }
+
+    public async Task Commit() => await _dbContext.SaveChangesAsync();
 }

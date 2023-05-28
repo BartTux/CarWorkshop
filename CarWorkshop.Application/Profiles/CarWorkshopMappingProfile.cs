@@ -3,6 +3,7 @@ using CarWorkshop.Application.Models;
 using CarWorkshop.Application.Services;
 using AutoMapper;
 using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
+using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
 
 namespace CarWorkshop.Application.Profiles;
 
@@ -28,7 +29,7 @@ internal class CarWorkshopMappingProfile : Profile
             .ForMember(dto => dto.City, opt => opt.MapFrom(src => src.ContactDetails.City))
             .ForMember(dto => dto.PostalCode, opt => opt.MapFrom(src => src.ContactDetails.PostalCode))
             .ForMember(dto => dto.IsEditable, opt => opt.MapFrom(src => 
-                user != null && (user.Id == src.CreatedById || user.IsInRole("Moderator")))
+                user != null && (user.Id == src.CreatedById || user.IsInRole("Owner")))
             );
 
         CreateMap<CarWorkshopDTO, EditCarWorkshopCommand>();
@@ -44,5 +45,7 @@ internal class CarWorkshopMappingProfile : Profile
 
         CreateMap<CarWorkshopServiceDTO, CarWorkshopService>()
             .ReverseMap();
+
+        CreateMap<CarWorkshopServiceDTO, EditCarWorkshopServiceCommand>();
     }
 }

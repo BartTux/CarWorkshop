@@ -1,6 +1,6 @@
 ﻿namespace CarWorkshop.Application.Models;
 
-public record QueryResultDTO<T>
+public record QueryResponse<T>
 {
     public List<T> Data { get; set; } = new();
     public int TotalCount { get; set; }

@@ -32,7 +32,9 @@
             <td>@result.Description</td>
             <td>
                 <a href="#" class="details" title="Details" data-toggle="tooltip"><i class="bi bi-eye"></i></a>
-                <a href="#" class="edit mx-3" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
+                <button type="button" class="custom-modal-button edit" data-url="@Url.Action($"CarWorkshopService/Edit/{ result.Id }")"> 
+                    <i class="bi bi-pencil"></i>
+                </button>
                 <button type="button" class="custom-modal-button delete" data-url="@Url.Action($"CarWorkshopService/Delete/{ result.Id }")"> 
                     <i class="bi bi-trash-fill"></i>
                 </button>
