@@ -105,9 +105,9 @@ public class CarWorkshopController : Controller
             QueryResult = carWorkshopServiceQueryResult
         };
 
-        return PartialView("_GetAllCarWorkshopServices", viewModel);
+        return PartialView(nameof(Views_CarWorkshop__GetAllCarWorkshopServices), viewModel);
     }
-
+    
     [HttpGet("{controller}/CarWorkshopService/Edit/{serviceId}")]
     [Authorize(Roles = "Owner")]
     public async Task<IActionResult> EditService([FromRoute] int serviceId)
