@@ -17,7 +17,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.custom-modal-button', function () {
-        console.log('inside');
         const url = $(this).data('url');
         const decodedUrl = decodeURIComponent(url);
 

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using MediatR;
+using AspNetCore;
 
 namespace CarWorkshop.Mvc.Controllers;
 
@@ -114,7 +115,7 @@ public class CarWorkshopController : Controller
         var carWorkshopServiceDto = await _mediator.Send(new GetCarWorkshopServiceQuery(serviceId));
         var command = _mapper.Map<EditCarWorkshopServiceCommand>(carWorkshopServiceDto);
 
-        return PartialView("_EditCarWorkshopService", command);
+        return PartialView(nameof(Views_CarWorkshop__EditCarWorkshopService), command);
     }
 
     [HttpPost("{controller}/CarWorkshopService/Edit/{serviceId}")]
@@ -133,7 +134,7 @@ public class CarWorkshopController : Controller
     public IActionResult DeleteService([FromRoute] int serviceId)
     {
         var command = new DeleteCarWorkshopServiceCommand(serviceId);
-        return PartialView("_DeleteCarWorkshopService", command);
+        return PartialView(nameof(Views_CarWorkshop__DeleteCarWorkshopService), command);
     }
 
     [HttpPost("{controller}/CarWorkshopService/Delete/{serviceId}")]
