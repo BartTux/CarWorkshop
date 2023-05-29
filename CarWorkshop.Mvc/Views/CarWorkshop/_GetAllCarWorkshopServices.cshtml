@@ -1,8 +1,5 @@
-﻿@using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+﻿@using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands
 @model CarWorkshopServicesViewModel
-@{
-    var serviceNumber = 1;
-}
 
 <div id="modalPlaceholder"></div>
 
@@ -16,9 +13,8 @@
 <table id="getCarWorkshopsTable" class="table mb-3">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">Cost</th>
             <th scope="col">Description</th>
+            <th scope="col">Cost</th>
             <th scope="col">Options</th>
         </tr>
     </thead>
@@ -27,9 +23,8 @@
     @foreach (var result in Model.QueryResult.Data)
     {
         <tr>
-            <th scope="row">@serviceNumber</th>
-            <td>@result.Cost</td>
             <td>@result.Description</td>
+            <td>@result.Cost</td>
             <td>
                 <a href="#" class="details" title="Details" data-toggle="tooltip"><i class="bi bi-eye"></i></a>
                 <button type="button" class="btn btn-link custom-modal-button edit" data-url="@Url.Action($"CarWorkshopService/Edit/{ result.Id }")" title="Edit"> 
@@ -40,8 +35,6 @@
                 </button>
             </td>
         </tr>
-
-        serviceNumber++;
     }
     </tbody>
 </table>
