@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using MediatR;
-using AspNetCore;
 
 namespace CarWorkshop.Mvc.Controllers;
 
@@ -24,12 +23,14 @@ public class CarWorkshopController : Controller
         _mediator = mediator;
     }
 
+    [HttpGet]
     public async Task<IActionResult> Index()
     {
         var carWorkshops = await _mediator.Send(new GetAllCarWorkshopsQuery());
         return View(carWorkshops);
     }
 
+    [HttpGet]
     [Authorize(Roles = "Owner")]
     public IActionResult Create() => View();
 
@@ -76,25 +77,17 @@ public class CarWorkshopController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    [HttpPost("{controller}/CarWorkshopService")]
-    [Authorize(Roles = "Owner")]
-    public async Task<IActionResult> CreateService([FromForm] CreateCarWorkshopServiceCommand command)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        await _mediator.Send(command);
-        return Ok();
-    }
-
     [HttpGet("{controller}/{encodedName}/CarWorkshopService")]
     public async Task<IActionResult> GetAllServices([FromRoute] string encodedName,
+                                                    [FromQuery] string? searchPhrase,
                                                     [FromQuery] int pageNumber,
                                                     [FromQuery] int pageSize)
     {
-        var query = new GetAllCarWorkshopServicesQuery(encodedName) 
-        { 
-            PageNumber = pageNumber, 
-            PageSize = pageSize 
+        var query = new GetAllCarWorkshopServicesQuery(encodedName)
+        {
+            SearchPhrase = searchPhrase,
+            PageNumber = pageNumber,
+            PageSize = pageSize
         };
 
         var carWorkshopServiceQueryResult = await _mediator.Send(query);
@@ -105,46 +98,6 @@ public class CarWorkshopController : Controller
             QueryResult = carWorkshopServiceQueryResult
         };
 
-        return PartialView(nameof(Views_CarWorkshop__GetAllCarWorkshopServices), viewModel);
-    }
-    
-    [HttpGet("{controller}/CarWorkshopService/Edit/{serviceId}")]
-    [Authorize(Roles = "Owner")]
-    public async Task<IActionResult> EditService([FromRoute] int serviceId)
-    {
-        var carWorkshopServiceDto = await _mediator.Send(new GetCarWorkshopServiceQuery(serviceId));
-        var command = _mapper.Map<EditCarWorkshopServiceCommand>(carWorkshopServiceDto);
-
-        return PartialView(nameof(Views_CarWorkshop__EditCarWorkshopService), command);
-    }
-
-    [HttpPost("{controller}/CarWorkshopService/Edit/{serviceId}")]
-    [Authorize(Roles = "Owner")]
-    public async Task<IActionResult> EditService([FromRoute] int serviceId,
-                                                 [FromForm] EditCarWorkshopServiceCommand command)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        await _mediator.Send(command);
-        return Ok();
-    }
-
-    [HttpGet("{controller}/CarWorkshopService/Delete/{serviceId}")]
-    [Authorize(Roles = "Owner")]
-    public IActionResult DeleteService([FromRoute] int serviceId)
-    {
-        var command = new DeleteCarWorkshopServiceCommand(serviceId);
-        return PartialView(nameof(Views_CarWorkshop__DeleteCarWorkshopService), command);
-    }
-
-    [HttpPost("{controller}/CarWorkshopService/Delete/{serviceId}")]
-    [Authorize(Roles = "Owner")]
-    public async Task<IActionResult> DeleteService([FromRoute] int serviceId,
-                                                   [FromForm] DeleteCarWorkshopServiceCommand command)
-    {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
-
-        await _mediator.Send(command);
-        return Ok();
+        return PartialView("~/Views/Shared/_GetAllCarWorkshopServices.cshtml", viewModel);
     }
 }

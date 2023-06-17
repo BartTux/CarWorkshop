@@ -7,12 +7,15 @@
     ViewData["Title"] = "Car Workshops";
 }
 
-<h1>Car Workshops</h1>
+<h4 class="float-start">Car Workshops</h4>
 
-@if (SignInManager.IsSignedIn(User) && !User.IsInRole("Moderator"))
+@if (SignInManager.IsSignedIn(User))
 {
-    <p><a asp-action="Create" class="btn btn-secondary">Create New</a></p>
+    <p class="float-end"><a asp-action="Create" class="btn btn-secondary">Create New</a></p>
 }
+
+<div class="clearfix"></div>
+<hr />
 
 <div class="row">
     @foreach(var item in Model) 

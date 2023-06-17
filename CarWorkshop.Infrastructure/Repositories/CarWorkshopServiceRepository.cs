@@ -22,16 +22,20 @@ public class CarWorkshopServiceRepository : ICarWorkshopServiceRepository
             
 
     public async Task<QueryResult<CarWorkshopService>> GetByEncodedName(string encodedName,
+                                                                        string? searchPhrase,
                                                                         int pageNumber,
                                                                         int pageSize)
     {
-        var baseQuery = await _dbContext
+        var baseQuery = _dbContext
             .Services
-            .Where(x => x.CarWorkshop.EncodedName == encodedName)
-            .ToListAsync();
+            .Where(x => x.CarWorkshop.EncodedName == encodedName);
+            
+        if (!string.IsNullOrEmpty(searchPhrase))
+            baseQuery = baseQuery.Where(x => x.Description.Contains(searchPhrase));
+
+        await baseQuery.ToListAsync();
 
         var totalCount = baseQuery.Count();
-
         var results = baseQuery
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)

@@ -1,0 +1,77 @@
+﻿@using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+@model CarWorkshopServicesViewModel
+
+<div id="modalPlaceholder"></div>
+
+<div class="d-flex justify-content-between">
+    <select class="form-select form-select-sm" asp-for="@Model.QueryResult.PageSize" style="width: 75px;" aria-label="Select sort option">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+    </select>
+
+    <div class="input-group input-group-sm rounded" style="width: 35%;">
+        <input type="search" class="custom-search form-control rounded-start" 
+            value="@Model.QueryResult.SearchPhrase" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+
+        <button type="button" class="btn btn-primary custom-search-button">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+</div>
+
+<table id="getCarWorkshopsTable" class="table mb-3 mt-3">
+    <thead>
+        <tr>
+            <th scope="col" style="width: 60%;">Description</th>
+            <th scope="col" style="width: 15%;">Cost</th>
+            <th scope="col" style="width: 25%;">Options</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var result in Model.QueryResult.Data)
+    {
+        <tr>
+            <td>@result.Description</td>
+            <td>$@result.Cost</td>
+            <td>
+                <a href="#" class="details mx-3" title="Details" data-toggle="tooltip"><i class="bi bi-eye"></i></a>
+                <button type="button" class="btn btn-link custom-modal-button edit" data-url="@Url.Action("Edit", "CarWorkshopService", new { serviceId = result.Id })" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-link custom-modal-button delete" data-url="@Url.Action("Delete", "CarWorkshopService", new { serviceId = result.Id })" title="Delete">
+                    <i class="bi bi-trash-fill"></i>
+                </button>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@if (Model.QueryResult.TotalCount > Model.QueryResult.PageSize)
+{
+    <nav aria-label="..." class="d-flex justify-content-between align-items-center">
+        <p class="text-muted float-start small mt-1">Total results count: @Model.QueryResult.TotalCount</p>
+
+        <ul class="pagination pagination-sm float-end">
+
+            <li class="page-item @(!Model.QueryResult.HasPreviousPage ? "disabled" : "")">
+                <button class="page-link" title="Previous page" data-page-number="@Model.QueryResult.PreviousPage" style="min-width: 30px;">&lt;</button>
+            </li>
+        
+            @for (int i = 1; i <= Model.QueryResult.TotalPages; i++)
+            {
+                <li class="page-item">
+                    <button class="page-link @(i == Model.QueryResult.PageNumber ? "bg-primary text-white" : "")" data-page-number="@i" style="min-width: 30px;">@i</button>
+                </li>
+            }
+
+            <li class="page-item @(!Model.QueryResult.HasNextPage ? "disabled" : "")">
+                <button class="page-link" title="Next page" data-page-number="@Model.QueryResult.NextPage" style="min-width: 30px;">&gt;</button>
+            </li>
+        </ul>
+    </nav>
+}
+

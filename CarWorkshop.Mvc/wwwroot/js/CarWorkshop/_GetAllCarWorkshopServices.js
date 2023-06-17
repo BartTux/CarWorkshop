@@ -1,25 +1,36 @@
 $(document).ready(function () {
     const modal = bootstrap.Modal;
 
+    var searchPhrase = $('.custom-search').val();
     var pageNumber = $('.page-link .bg-primary').data('pageNumber');
     var pageSize = $('.form-select option:selected').val();
 
     $(document).on('click', '.page-link', function () {
         pageNumber = $(this).data('pageNumber');
-        loadCarWorkshopServices(pageNumber, pageSize);
+        searchPhrase = $('.custom-search').val();
+        loadCarWorkshopServices(searchPhrase, pageNumber, pageSize);
     });
 
     $(document).on('change', '.form-select', function () {
         $('.form-select option:selected').each(function () {
             pageSize = $(this).val();
-            loadCarWorkshopServices(pageNumber, pageSize)
+            searchPhrase = $('.custom-search').val();
+            loadCarWorkshopServices(searchPhrase, pageNumber, pageSize)
         });
+    });
+
+    $(document).on('click', '.custom-search-button', function () {
+        searchPhrase = $('.custom-search').val();
+        console.log(searchPhrase);
+        loadCarWorkshopServices(searchPhrase, pageNumber, pageSize);
     });
 
     $(document).on('click', '.custom-modal-button', function () {
         const url = $(this).data('url');
+        console.log(url);
         const decodedUrl = decodeURIComponent(url);
-
+        console.log(decodedUrl);
+        
         $.get(decodedUrl).done(function (data) {
             $('#modalPlaceholder').html(data);
             modal.getOrCreateInstance($('#modalPlaceholder').find('.modal')).show();
@@ -35,13 +46,13 @@ $(document).ready(function () {
             data: $(this).serialize(),
 
             success: function () {
-                toastr["success"]("Modified car workshop service correctly");
+                toastr['success']('Modified car workshop service correctly');
                 loadCarWorkshopServices();
                 modal.getOrCreateInstance($('#modalPlaceholder').find('.modal')).hide();
             },
 
             error: function () {
-                toastr["error"]("Something went wrong while editing...");
+                toastr['error']('Something went wrong...');
             }
         });
     });
@@ -55,13 +66,13 @@ $(document).ready(function () {
             data: $(this).serialize(),
 
             success: function () {
-                toastr["success"]("Removed car workshop service correctly");
+                toastr['success']('Removed car workshop service correctly');
                 loadCarWorkshopServices();
                 modal.getOrCreateInstance($('#modalPlaceholder').find('.modal')).hide();
             },
 
             error: function () {
-                toastr["error"]("Something went wrong...");
+                toastr['error']('Something went wrong...');
             }
         }); 
     });

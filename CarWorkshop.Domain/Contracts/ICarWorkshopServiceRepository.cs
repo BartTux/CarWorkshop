@@ -6,6 +6,7 @@ public interface ICarWorkshopServiceRepository
 {
     Task<CarWorkshopService> GetById(int id);
     Task<QueryResult<CarWorkshopService>> GetByEncodedName(string encodedName,
+                                                           string? searchPhrase,
                                                            int pageNumber,
                                                            int pageSize);
     Task Create(CarWorkshopService carWorkshopService);

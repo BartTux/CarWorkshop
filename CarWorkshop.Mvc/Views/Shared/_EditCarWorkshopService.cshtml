@@ -1,28 +1,21 @@
 ﻿@using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
-@model CreateCarWorkshopServiceCommand
-
-<h3 class="m-3">Services:</h3>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCarWorkshopServiceModal">
-    <i class="bi bi-plus-circle" style="margin-right: 6px;"></i> Add new service
-</button>
+@model EditCarWorkshopServiceCommand
 
 <!-- Modal -->
-<div class="modal fade" id="createCarWorkshopServiceModal" tabindex="-1" role="dialog" aria-labelledby="createCarWorkshopServiceModalLabel" aria-hidden="true">
+<div class="modal fade" id="editCarWorkshopServiceModal" tabindex="-1" role="dialog" aria-labelledby="editCarWorkshopServiceModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form asp-action="CreateService">
+            <form asp-controller="CarWorkshopService" asp-action="Edit">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createCarWorkshopServiceModalLabel">Create new carworkshop service</h5>
+                    <h5 class="modal-title" id="editCarWorkshopServiceModalLabel">Edit carworkshop service</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                    <input asp-for="CarWorkshopEncodedName" class="form-control" type="hidden" />
-                    
+                    <input asp-for="Id" type="hidden" />
+
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
                         <input asp-for="Description" class="form-control" />
@@ -36,7 +29,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary">Edit</button>
                 </div>
             </form>
         </div>
@@ -44,5 +37,7 @@
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

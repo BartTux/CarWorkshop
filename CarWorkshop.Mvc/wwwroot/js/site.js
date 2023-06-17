@@ -3,13 +3,13 @@
 
 // Write your JavaScript code.
 
-const loadCarWorkshopServices = (pageNumber = 1, pageSize = 5) => {
+const loadCarWorkshopServices = (searchPhrase = null, pageNumber = 1, pageSize = 5) => {
     const container = $("#services");
     const carWorkshopEncodedName = container.data("encodedName");
 
     $.ajax({
         url: `/CarWorkshop/${carWorkshopEncodedName}/CarWorkshopService`,
-        data: { pageNumber: pageNumber, pageSize: pageSize },
+        data: { searchPhrase: searchPhrase, pageNumber: pageNumber, pageSize: pageSize },
         type: 'GET',
         success: function (viewHtml) {
             if (!viewHtml.length)

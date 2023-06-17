@@ -5,7 +5,7 @@
 <div class="modal fade" id="deleteCarWorkshopServiceModal" tabindex="-1" role="dialog" aria-labelledby="deleteCarWorkshopServiceModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form asp-action="DeleteService" asp-route-serviceId="@Model.Id" method="post">
+            <form asp-controller="CarWorkshopService" asp-action="Delete" asp-route-serviceId="@Model.Id" method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteCarWorkshopServiceModalLabel">Delete carworkshop service</h5>
                     <button type="button" class="custom-modal-close-button btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
