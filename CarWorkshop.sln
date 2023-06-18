@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarWorkshop.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarWorkshop.Infrastructure", "CarWorkshop.Infrastructure\CarWorkshop.Infrastructure.csproj", "{8C8F0B3A-CBA6-4585-8841-3E489E613FA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarWorkshop.Domain.Tests", "CarWorkshop.DomainTests\CarWorkshop.Domain.Tests.csproj", "{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8C8F0B3A-CBA6-4585-8841-3E489E613FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C8F0B3A-CBA6-4585-8841-3E489E613FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C8F0B3A-CBA6-4585-8841-3E489E613FA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
