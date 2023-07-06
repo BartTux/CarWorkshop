@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace CarWorkshop.Application.Validation;
 
-public class EditCarWorkshopByNameCommandValidator : AbstractValidator<EditCarWorkshopCommand>
+public class EditCarWorkshopCommandValidator : AbstractValidator<EditCarWorkshopCommand>
 {
-    public EditCarWorkshopByNameCommandValidator()
+    public EditCarWorkshopCommandValidator()
     {
         var phoneNumberMinLength = 8;
         var phoneNumberMaxLength = 12;

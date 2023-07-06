@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarWorkshop.Application", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarWorkshop.Infrastructure", "CarWorkshop.Infrastructure\CarWorkshop.Infrastructure.csproj", "{8C8F0B3A-CBA6-4585-8841-3E489E613FA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarWorkshop.Domain.Tests", "CarWorkshop.DomainTests\CarWorkshop.Domain.Tests.csproj", "{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarWorkshop.Domain.Tests", "CarWorkshop.DomainTests\CarWorkshop.Domain.Tests.csproj", "{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BF655C74-C7D3-4C55-A620-DFEB56CC9804}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E2CB54B-74C4-4064-84DA-52C21F6CA9E6} = {BF655C74-C7D3-4C55-A620-DFEB56CC9804}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5B341ED7-42FE-4C79-AA95-00AE0ED33680}
