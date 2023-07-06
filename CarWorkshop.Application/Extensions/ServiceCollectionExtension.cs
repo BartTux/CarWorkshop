@@ -6,6 +6,7 @@ using FluentValidation.AspNetCore;
 using CarWorkshop.Application.Services;
 using AutoMapper;
 using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
+using CarWorkshop.Application.Services.Contracts;
 
 namespace CarWorkshop.Application.Extensions;
 

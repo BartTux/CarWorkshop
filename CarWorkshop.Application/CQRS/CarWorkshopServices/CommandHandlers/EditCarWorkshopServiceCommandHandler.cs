@@ -1,5 +1,5 @@
 ﻿using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
-using CarWorkshop.Application.Services;
+using CarWorkshop.Application.Services.Contracts;
 using CarWorkshop.Domain.Contracts;
 using MediatR;
 

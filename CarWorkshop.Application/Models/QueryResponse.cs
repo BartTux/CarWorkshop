@@ -1,8 +1,8 @@
 ﻿namespace CarWorkshop.Application.Models;
 
-public record QueryResponse<T>
+public record QueryResponse<TData>
 {
-    public List<T> Data { get; set; } = new();
+    public List<TData> Data { get; set; } = new();
     public int TotalCount { get; set; }
 
     public string? SearchPhrase { get; set; }

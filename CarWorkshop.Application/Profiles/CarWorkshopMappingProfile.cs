@@ -1,9 +1,9 @@
 ﻿using CarWorkshop.Domain.Entities;
 using CarWorkshop.Application.Models;
-using CarWorkshop.Application.Services;
-using AutoMapper;
+using CarWorkshop.Application.Services.Contracts;
 using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
 using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+using AutoMapper;
 
 namespace CarWorkshop.Application.Profiles;
 

@@ -1,4 +1,5 @@
 ﻿using CarWorkshop.Application.Models;
+using CarWorkshop.Application.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

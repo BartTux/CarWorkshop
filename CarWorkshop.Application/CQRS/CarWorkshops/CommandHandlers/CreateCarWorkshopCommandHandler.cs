@@ -1,8 +1,8 @@
 ﻿using CarWorkshop.Domain.Contracts;
-using CarWorkshop.Application.Services;
 using AutoMapper;
 using MediatR;
 using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
+using CarWorkshop.Application.Services.Contracts;
 
 namespace CarWorkshop.Application.CQRS.CarWorkshops.CommandHandlers;
 

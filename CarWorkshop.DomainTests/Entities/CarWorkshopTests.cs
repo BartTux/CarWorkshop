@@ -15,7 +15,9 @@ public class CarWorkshopTests
         carWorkshop.EncodeName();
 
         // Assert
-        carWorkshop.EncodedName.Should().Be("our-super-car-workshop");
+        carWorkshop.EncodedName
+            .Should()
+            .Be("our-super-car-workshop");
     }
 
     [Fact]
