@@ -24,7 +24,7 @@ public class EditCarWorkshopCommandHandler : IRequestHandler<EditCarWorkshopComm
         var user = _userContextService.GetCurrentUser();
 
         if (user is null
-            || carWorkshop.CreatedById != user.Id && !user.IsInRole("Owner")) return;
+            || (carWorkshop.CreatedById != user.Id && !user.IsInRole("Owner"))) return;
 
         carWorkshop.Description = request.Description;
         carWorkshop.About = request.About;

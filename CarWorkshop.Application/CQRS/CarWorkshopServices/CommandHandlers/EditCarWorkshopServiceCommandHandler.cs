@@ -23,7 +23,12 @@ public class EditCarWorkshopServiceCommandHandler : IRequestHandler<EditCarWorks
         var user = _userContext.GetCurrentUser();
         var carWorkshopService = await _repository.GetById(request.Id);
 
-        if (user is null || !user.IsInRole("Owner")) return;
+        if (user is null
+            || !user.IsInRole("Owner")
+            || user.Id != carWorkshopService.CarWorkshop.CreatedById)
+        {
+            return;
+        }
 
         carWorkshopService.Cost = request.Cost;
         carWorkshopService.Description = request.Description;

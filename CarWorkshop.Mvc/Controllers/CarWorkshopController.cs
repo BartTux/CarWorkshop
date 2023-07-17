@@ -1,7 +1,7 @@
 ﻿using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
-using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
 using CarWorkshop.Application.CQRS.CarWorkshops.Queries;
 using CarWorkshop.Application.CQRS.CarWorkshopServices.Queries;
+using CarWorkshop.Application.Filters;
 using CarWorkshop.Mvc.Models;
 using CarWorkshop.Mvc.ViewModels;
 using CarWorkshop.Mvc.Extensions;
@@ -36,13 +36,12 @@ public class CarWorkshopController : Controller
 
     [HttpPost]
     [Authorize(Roles = "Owner")]
+    [ViewValidation]
     public async Task<IActionResult> Create([FromForm] CreateCarWorkshopCommand command)
     {
-        if (!ModelState.IsValid) return View(command);
-
         await _mediator.Send(command);
-
         this.SetNotification(NotificationTypeEnum.success, $"Created carworkshop { command.Name }");
+
         return RedirectToAction(nameof(Index));
     }
 
@@ -61,18 +60,17 @@ public class CarWorkshopController : Controller
 
         if (!carWorkshop.IsEditable) 
             return RedirectToAction("NoAccess", "Home");
-
+        
         var command = _mapper.Map<EditCarWorkshopCommand>(carWorkshop);
         return View(command);
     }
 
     [HttpPost("{controller}/{encodedName}/Edit")]
     [Authorize(Roles = "Owner")]
+    [ViewValidation]
     public async Task<IActionResult> Edit([FromRoute] string encodedName,
                                           [FromForm] EditCarWorkshopCommand command)
     {
-        if (!ModelState.IsValid) return View(command);
-
         await _mediator.Send(command);
         return RedirectToAction(nameof(Index));
     }

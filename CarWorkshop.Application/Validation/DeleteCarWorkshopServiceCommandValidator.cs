@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+﻿using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+using FluentValidation;
 
 namespace CarWorkshop.Application.Validation;
 

@@ -16,6 +16,11 @@ public class CarWorkshopRepository : ICarWorkshopRepository
     public async Task<IEnumerable<Domain.Entities.CarWorkshop>> GetAll()
         => await _dbContext.CarWorkshops.ToListAsync();
 
+    public async Task<Domain.Entities.CarWorkshop> GetById(int id)
+        => await _dbContext.CarWorkshops
+            .FirstOrDefaultAsync(x => x.Id == id)
+            ?? throw new Exception($"Cannot find car workshop by id: { id }");
+
     public async Task<Domain.Entities.CarWorkshop?> GetByName(string name)
         => await _dbContext.CarWorkshops
             .FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());

@@ -29,7 +29,7 @@ internal class CarWorkshopMappingProfile : Profile
             .ForMember(dto => dto.City, opt => opt.MapFrom(src => src.ContactDetails.City))
             .ForMember(dto => dto.PostalCode, opt => opt.MapFrom(src => src.ContactDetails.PostalCode))
             .ForMember(dto => dto.IsEditable, opt => opt.MapFrom(src => 
-                user != null && (user.Id == src.CreatedById || user.IsInRole("Owner")))
+                user != null && (user.Id == src.CreatedById && user.IsInRole("Owner")))
             );
 
         CreateMap<CarWorkshopDTO, EditCarWorkshopCommand>();

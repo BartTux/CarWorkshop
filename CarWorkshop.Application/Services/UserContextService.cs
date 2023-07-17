@@ -8,16 +8,26 @@ namespace CarWorkshop.Application.Services;
 public class UserContextService : IUserContextService
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly HttpContext _httpContext;
+
+    public ClaimsPrincipal User => _httpContext.User
+        ?? throw new InvalidOperationException("User context is not represented");
+
+    public int UserId 
+        => int.Parse(User.FindFirst(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value);
 
     public UserContextService(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
+
+        _httpContext = _httpContextAccessor.HttpContext
+            ?? throw new InvalidOperationException("Http context is not represented");
     }
 
     public CurrentUser? GetCurrentUser()
     {
         var user = _httpContextAccessor?.HttpContext?.User
-            ?? throw new InvalidOperationException("Context user is not represented");
+            ?? throw new InvalidOperationException("User context is not represented");
 
         if (user.Identity is null || !user.Identity.IsAuthenticated) return null;
 

@@ -1,12 +1,15 @@
 ﻿using CarWorkshop.Application.Profiles;
 using CarWorkshop.Application.Validation;
+using CarWorkshop.Application.Services;
+using CarWorkshop.Application.Services.Contracts;
+using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
+using CarWorkshop.Application.Authorization.Requirements;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using CarWorkshop.Application.Services;
 using AutoMapper;
-using CarWorkshop.Application.CQRS.CarWorkshops.Commands;
-using CarWorkshop.Application.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
+using CarWorkshop.Application.Authorization.RequirementHandlers;
 
 namespace CarWorkshop.Application.Extensions;
 
@@ -20,6 +23,7 @@ public static class ServiceCollectionExtension
             config.RegisterServicesFromAssemblyContaining<CreateCarWorkshopCommand>());
 
         //services.AddAutoMapper(typeof(CarWorkshopMappingProfile));
+        services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
         services.AddScoped(provider => new MapperConfiguration(config =>
         {
             var scope = provider.CreateScope();
@@ -33,5 +37,4 @@ public static class ServiceCollectionExtension
             .AddFluentValidationAutoValidation()
             .AddFluentValidationClientsideAdapters();
     }
-
 }

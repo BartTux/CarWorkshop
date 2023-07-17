@@ -22,12 +22,13 @@ public class GetAllCarWorkshopServicesQueryHandler
     public async Task<QueryResponse<CarWorkshopServiceDTO>> Handle(GetAllCarWorkshopServicesQuery request,
                                                                    CancellationToken cancellationToken)
     {
-        var queryResult = await _repository.GetByEncodedName(
-            request.CarWorkshopEncodedName,
-            request.SearchPhrase,
-            request.PageNumber,
-            request.PageSize
-        );
+        var queryResult = await _repository
+            .GetByEncodedName(
+                request.CarWorkshopEncodedName,
+                request.SearchPhrase,
+                request.PageNumber,
+                request.PageSize
+            );
 
         var carWorkshopServiceDtos = queryResult.Data
             .Select(c => new CarWorkshopServiceDTO
@@ -43,7 +44,7 @@ public class GetAllCarWorkshopServicesQueryHandler
             Data = carWorkshopServiceDtos,
             TotalCount = queryResult.TotalCount,
             SearchPhrase = request.SearchPhrase,
-            PageNumber = request.PageNumber,
+            PageNumber = queryResult.PageNumber,
             PageSize = request.PageSize
         };
 

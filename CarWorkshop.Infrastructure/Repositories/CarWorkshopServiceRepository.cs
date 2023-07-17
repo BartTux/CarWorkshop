@@ -3,6 +3,7 @@ using CarWorkshop.Domain.Entities;
 using CarWorkshop.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Text;
 
 namespace CarWorkshop.Infrastructure.Repositories;
 
@@ -17,6 +18,7 @@ public class CarWorkshopServiceRepository : ICarWorkshopServiceRepository
 
     public async Task<CarWorkshopService> GetById(int id)
         => await _dbContext.Services
+            .Include(s => s.CarWorkshop)
             .FirstOrDefaultAsync(x => x.Id == id)
             ?? throw new Exception($"Cannot find service by id: { id }");
             
@@ -26,8 +28,7 @@ public class CarWorkshopServiceRepository : ICarWorkshopServiceRepository
                                                                         int pageNumber,
                                                                         int pageSize)
     {
-        var baseQuery = _dbContext
-            .Services
+        var baseQuery = _dbContext.Services
             .Where(x => x.CarWorkshop.EncodedName == encodedName);
             
         if (!string.IsNullOrEmpty(searchPhrase))
@@ -36,12 +37,15 @@ public class CarWorkshopServiceRepository : ICarWorkshopServiceRepository
         await baseQuery.ToListAsync();
 
         var totalCount = baseQuery.Count();
-        var results = baseQuery
+        pageNumber 
+            = Math.Ceiling(totalCount / (double)pageSize) >= pageNumber ? pageNumber : 1;
+
+        var results = await baseQuery
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
-            .ToList();
+            .ToListAsync();
 
-        return new() { TotalCount = totalCount, Data = results };
+        return new() { TotalCount = totalCount, PageNumber = pageNumber, Data = results };
     }
 
     public async Task Create(CarWorkshopService carWorkshopService)

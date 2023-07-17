@@ -1,6 +1,7 @@
 using CarWorkshop.Infrastructure.Seeders;
 using CarWorkshop.Infrastructure.Extensions;
 using CarWorkshop.Application.Extensions;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,11 @@ builder.Services.AddControllersWithViews(options =>
 // Add extensions
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+// Setup NLog
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(LogLevel.Trace);
+builder.Host.UseNLog();
 
 var app = builder.Build();
 
