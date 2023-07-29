@@ -9,7 +9,5 @@ public class BadRequestValidationAttribute : ActionFilterAttribute
     {
         if (!context.ModelState.IsValid)
             context.Result = new BadRequestObjectResult(context.ModelState);
-
-        base.OnActionExecuting(context);
     }
 }

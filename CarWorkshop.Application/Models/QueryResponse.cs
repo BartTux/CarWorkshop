@@ -14,4 +14,6 @@ public record QueryResponse<TData>
     public bool HasPreviousPage => PageNumber > 1;
     public int? NextPage => HasNextPage ? PageNumber + 1 : null;
     public int? PreviousPage => HasPreviousPage ? PageNumber - 1 : null;
+
+    public bool IsEditable { get; set; }
 }

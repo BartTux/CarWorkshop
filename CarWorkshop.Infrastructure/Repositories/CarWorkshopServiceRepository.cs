@@ -21,7 +21,10 @@ public class CarWorkshopServiceRepository : ICarWorkshopServiceRepository
             .Include(s => s.CarWorkshop)
             .FirstOrDefaultAsync(x => x.Id == id)
             ?? throw new Exception($"Cannot find service by id: { id }");
-            
+
+    public async Task<CarWorkshopService?> GetByDescription(string description)
+        => await _dbContext.Services
+            .FirstOrDefaultAsync(x => x.Description == description);
 
     public async Task<QueryResult<CarWorkshopService>> GetByEncodedName(string encodedName,
                                                                         string? searchPhrase,

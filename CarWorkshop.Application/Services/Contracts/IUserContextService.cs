@@ -6,7 +6,7 @@ namespace CarWorkshop.Application.Services.Contracts;
 public interface IUserContextService
 {
     public ClaimsPrincipal User { get; }
-    public int UserId { get; }
+    public string UserId { get; }
 
     CurrentUser? GetCurrentUser();
 }

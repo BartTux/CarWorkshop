@@ -13,8 +13,8 @@ public class UserContextService : IUserContextService
     public ClaimsPrincipal User => _httpContext.User
         ?? throw new InvalidOperationException("User context is not represented");
 
-    public int UserId 
-        => int.Parse(User.FindFirst(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value);
+    public string UserId 
+        => User.FindFirst(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value;
 
     public UserContextService(IHttpContextAccessor httpContextAccessor)
     {

@@ -1,5 +1,6 @@
 $(document).ready(function () {
     const modal = bootstrap.Modal;
+    const enterCode = 13;
 
     var searchPhrase = $('.custom-search').val();
     var pageNumber = $('.page-link .bg-primary').data('pageNumber');
@@ -21,8 +22,21 @@ $(document).ready(function () {
 
     $(document).on('click', '.custom-search-button', function () {
         searchPhrase = $('.custom-search').val();
-        console.log(searchPhrase);
         loadCarWorkshopServices(searchPhrase, pageNumber, pageSize);
+    });
+
+    $(document).on('keydown', '.custom-search', function (event) {
+        if (event.which === enterCode) {
+            searchPhrase = $('.custom-search').val();
+            loadCarWorkshopServices(searchPhrase, pageNumber, pageSize);
+        }
+    });
+
+    $(document).on('search', '.custom-search', function () {
+        if (this.value === '') {
+            searchPhrase = null;
+            loadCarWorkshopServices(searchPhrase, pageNumber, pageSize);
+        }
     });
 
     $(document).on('click', '.custom-modal-button', function () {

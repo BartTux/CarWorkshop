@@ -1,6 +1,7 @@
 using CarWorkshop.Infrastructure.Seeders;
 using CarWorkshop.Infrastructure.Extensions;
 using CarWorkshop.Application.Extensions;
+using CarWorkshop.Application.Middleware;
 using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,12 +34,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

@@ -39,13 +39,23 @@
                     <td>@result.Description</td>
                     <td>$@result.Cost</td>
                     <td>
-                        <a href="#" class="details mx-3" title="Details" data-toggle="tooltip"><i class="bi bi-eye"></i></a>
-                        <button type="button" class="btn btn-link custom-modal-button edit" data-url="@Url.Action("Edit", "CarWorkshopService", new { serviceId = result.Id })" title="Edit">
-                            <i class="bi bi-pencil"></i>
+                        <button type="button" class="btn btn-link custom-modal-button details" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = result.Id })" title="Details">
+                            <i class="bi bi-eye"></i>
                         </button>
-                        <button type="button" class="btn btn-link custom-modal-button delete" data-url="@Url.Action("Delete", "CarWorkshopService", new { serviceId = result.Id })" title="Delete">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
+
+                        @if (Model.QueryResult.IsEditable)
+                        {
+                            <button type="button" class="btn btn-link custom-modal-button edit" data-url="@Url.Action("Edit", "CarWorkshopService", new { serviceId = result.Id })" title="Edit">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button type="button" class="btn btn-link custom-modal-button delete" data-url="@Url.Action("Delete", "CarWorkshopService", new { serviceId = result.Id })" title="Delete">
+                                <i class="bi bi-trash-fill"></i>
+                            </button>
+                        } 
+                        else
+                        {
+                            // koszyk
+                        }
                     </td>
                 </tr>
             }

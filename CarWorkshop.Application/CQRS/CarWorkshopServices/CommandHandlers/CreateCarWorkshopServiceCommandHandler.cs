@@ -1,22 +1,28 @@
 ﻿using CarWorkshop.Domain.Contracts;
 using CarWorkshop.Domain.Entities;
-using MediatR;
-using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+using CarWorkshop.Application.Models;
+using Microsoft.AspNetCore.Authorization;
+using CarWorkshop.Application.Authorization.Requirements;
 using CarWorkshop.Application.Services.Contracts;
+using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+using MediatR;
 
 namespace CarWorkshop.Application.CQRS.CarWorkshopServices.CommandHandlers;
 
 public class CreateCarWorkshopServiceCommandHandler : IRequestHandler<CreateCarWorkshopServiceCommand>
 {
     private readonly IUserContextService _userContextService;
+    private readonly IAuthorizationService _authorizationService;
     private readonly ICarWorkshopRepository _carWorkshopRepository;
     private readonly ICarWorkshopServiceRepository _carWorkshopServiceRepository;
 
-    public CreateCarWorkshopServiceCommandHandler(IUserContextService userContext,
+    public CreateCarWorkshopServiceCommandHandler(IUserContextService userContextService,
+                                                  IAuthorizationService authorizationService,
                                                   ICarWorkshopRepository carWorkshopRepository,
                                                   ICarWorkshopServiceRepository carWorkshopServiceRepository)
     {
-        _userContextService = userContext;
+        _userContextService = userContextService;
+        _authorizationService = authorizationService;
         _carWorkshopRepository = carWorkshopRepository;
         _carWorkshopServiceRepository = carWorkshopServiceRepository;
     }
@@ -24,11 +30,15 @@ public class CreateCarWorkshopServiceCommandHandler : IRequestHandler<CreateCarW
     public async Task Handle(CreateCarWorkshopServiceCommand request,
                              CancellationToken cancellationToken)
     {
-        var carWorkshop = await _carWorkshopRepository.GetByEncodedName(request.CarWorkshopEncodedName);
-        var user = _userContextService.GetCurrentUser();
+        var carWorkshop = await _carWorkshopRepository
+            .GetByEncodedName(request.CarWorkshopEncodedName);
 
-        if (user is null
-            || carWorkshop.CreatedById != user.Id && !user.IsInRole("Owner")) return;
+        var authenticationResult = await _authorizationService.AuthorizeAsync(
+            _userContextService.User, 
+            carWorkshop,
+            new ResourceOperationRequirement(ResourceOperation.Create));
+
+        if (!authenticationResult.Succeeded) throw new Exception();
 
         var carWorkshopService = new CarWorkshopService
         {

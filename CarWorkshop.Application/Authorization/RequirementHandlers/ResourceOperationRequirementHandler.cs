@@ -1,26 +1,26 @@
 ﻿using CarWorkshop.Application.Authorization.Requirements;
 using CarWorkshop.Application.Models;
-using CarWorkshop.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
 namespace CarWorkshop.Application.Authorization.RequirementHandlers;
 
-public class ResourceOperationRequirementHandler 
-    : AuthorizationHandler<ResourceOperationRequirement, CarWorkshopService>
+public class ResourceOperationRequirementHandler
+    : AuthorizationHandler<ResourceOperationRequirement, Domain.Entities.CarWorkshop>
 {
+    public string UserId { get; private set; } = default!;
+
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
                                                    ResourceOperationRequirement requirement,
-                                                   CarWorkshopService resource)
+                                                   Domain.Entities.CarWorkshop resource)
     {
-        if (requirement.ResourceOperation is ResourceOperation.Create or ResourceOperation.Read)
+        if (requirement.ResourceOperation is ResourceOperation.Read)
             context.Succeed(requirement);
 
-        var userId = context.User
+        UserId = context.User
             .FindFirst(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value;
 
-        if (userId == resource.CarWorkshop.CreatedById) 
-            context.Succeed(requirement);
+        if (UserId == resource.CreatedById) context.Succeed(requirement);
 
         return Task.CompletedTask;
     }

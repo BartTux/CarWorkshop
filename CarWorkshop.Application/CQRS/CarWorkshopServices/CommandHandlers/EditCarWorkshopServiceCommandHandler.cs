@@ -1,34 +1,40 @@
-﻿using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+﻿using CarWorkshop.Application.Authorization.Requirements;
+using CarWorkshop.Application.CQRS.CarWorkshopServices.Commands;
+using CarWorkshop.Application.Models;
 using CarWorkshop.Application.Services.Contracts;
 using CarWorkshop.Domain.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using MediatR;
 
 namespace CarWorkshop.Application.CQRS.CarWorkshopServices.CommandHandlers;
 
 public class EditCarWorkshopServiceCommandHandler : IRequestHandler<EditCarWorkshopServiceCommand>
 {
-    private readonly IUserContextService _userContext;
+    private readonly IUserContextService _userContextService;
+    private readonly IAuthorizationService _authorizationService;
     private readonly ICarWorkshopServiceRepository _repository;
 
-    public EditCarWorkshopServiceCommandHandler(IUserContextService userContext,
+    public EditCarWorkshopServiceCommandHandler(IUserContextService userContextService,
+                                                IAuthorizationService authorizationService,
                                                 ICarWorkshopServiceRepository repository)
     {
-        _userContext = userContext;
+        _userContextService = userContextService;
+        _authorizationService = authorizationService;
         _repository = repository;
     }
 
     public async Task Handle(EditCarWorkshopServiceCommand request,
                              CancellationToken cancellationToken)
     {
-        var user = _userContext.GetCurrentUser();
         var carWorkshopService = await _repository.GetById(request.Id);
 
-        if (user is null
-            || !user.IsInRole("Owner")
-            || user.Id != carWorkshopService.CarWorkshop.CreatedById)
-        {
-            return;
-        }
+        var authorizationResult = await _authorizationService.AuthorizeAsync(
+            _userContextService.User,
+            carWorkshopService.CarWorkshop,
+            new ResourceOperationRequirement(ResourceOperation.Update));
+
+        if (!authorizationResult.Succeeded)
+            throw new Exception();
 
         carWorkshopService.Cost = request.Cost;
         carWorkshopService.Description = request.Description;

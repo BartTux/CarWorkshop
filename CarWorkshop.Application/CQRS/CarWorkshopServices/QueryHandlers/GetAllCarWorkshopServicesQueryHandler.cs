@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CarWorkshop.Application.CQRS.CarWorkshopServices.Queries;
 using CarWorkshop.Application.Models;
+using CarWorkshop.Application.Services.Contracts;
 using CarWorkshop.Domain.Contracts;
 using MediatR;
 
@@ -10,19 +11,27 @@ public class GetAllCarWorkshopServicesQueryHandler
     : IRequestHandler<GetAllCarWorkshopServicesQuery, QueryResponse<CarWorkshopServiceDTO>>
 {
     private readonly IMapper _mapper;
-    private readonly ICarWorkshopServiceRepository _repository;
+    private readonly IUserContextService _userContextService;
+    private readonly ICarWorkshopRepository _carWorkshopRepository;
+    private readonly ICarWorkshopServiceRepository _carWorkshopServiceRepository;
 
     public GetAllCarWorkshopServicesQueryHandler(IMapper mapper,
-                                                 ICarWorkshopServiceRepository repository)
+                                                 IUserContextService userContextService,
+                                                 ICarWorkshopRepository carWorkshopRepository,
+                                                 ICarWorkshopServiceRepository carWorkshopServiceRepository)
     {
         _mapper = mapper;
-        _repository = repository;
+        _userContextService = userContextService;
+        _carWorkshopRepository = carWorkshopRepository;
+        _carWorkshopServiceRepository = carWorkshopServiceRepository;
     }
 
     public async Task<QueryResponse<CarWorkshopServiceDTO>> Handle(GetAllCarWorkshopServicesQuery request,
                                                                    CancellationToken cancellationToken)
     {
-        var queryResult = await _repository
+        var carWorkshop = await _carWorkshopRepository.GetByEncodedName(request.CarWorkshopEncodedName);
+
+        var queryResult = await _carWorkshopServiceRepository
             .GetByEncodedName(
                 request.CarWorkshopEncodedName,
                 request.SearchPhrase,
@@ -35,7 +44,7 @@ public class GetAllCarWorkshopServicesQueryHandler
             {
                 Id = c.Id,
                 Description = c.Description,
-                Cost = c.Cost
+                Cost = c.Cost,
             })
             .ToList();
 
@@ -45,7 +54,8 @@ public class GetAllCarWorkshopServicesQueryHandler
             TotalCount = queryResult.TotalCount,
             SearchPhrase = request.SearchPhrase,
             PageNumber = queryResult.PageNumber,
-            PageSize = request.PageSize
+            PageSize = request.PageSize,
+            IsEditable = _userContextService.UserId == carWorkshop.CreatedById
         };
 
         //var carWorkshopServiceDtos = 

@@ -37,15 +37,12 @@ public class DeleteCarWorkshopServiceCommandHandler : IRequestHandler<DeleteCarW
 
         var authorizationResult = await _authorizationService.AuthorizeAsync(
             _userContextService.User,
-            carWorkshopService,
+            carWorkshopService.CarWorkshop,
             new ResourceOperationRequirement(ResourceOperation.Delete)
         );
 
         if (!authorizationResult.Succeeded) 
-        {
-            _logger.LogError($"{ loggerSummary } Unable to perform DELETE action");
             throw new Exception();
-        }
         
         await _repository.Delete(request.Id);
 

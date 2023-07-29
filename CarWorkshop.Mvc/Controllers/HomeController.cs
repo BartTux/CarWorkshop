@@ -15,6 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        throw new Exception("This is 18.07.2023 exception.");
         return View();
     }
 

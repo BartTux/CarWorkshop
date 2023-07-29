@@ -13,11 +13,18 @@ public class CarWorkshopServiceController : Controller
 {
     private readonly IMapper _mapper;
     private readonly IMediator _mediator;
-
     public CarWorkshopServiceController(IMapper mapper, IMediator mediator)
     {
         _mapper = mapper;
         _mediator = mediator;
+    }
+
+    [HttpGet("{controller}/Details/{serviceId}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Details(int serviceId)
+    {
+        var model = await _mediator.Send(new GetCarWorkshopServiceQuery(serviceId));
+        return PartialView("~/Views/Shared/_CarWorkshopServiceDetails.cshtml", model);
     }
 
     [HttpPost("{controller}/Create")]

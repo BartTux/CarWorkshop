@@ -12,6 +12,7 @@ using MediatR;
 
 namespace CarWorkshop.Mvc.Controllers;
 
+[Authorize(Roles = "Owner")]
 public class CarWorkshopController : Controller
 {
     private readonly IMapper _mapper;
@@ -24,6 +25,7 @@ public class CarWorkshopController : Controller
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> Index()
     {
         var carWorkshops = await _mediator.Send(new GetAllCarWorkshopsQuery());
@@ -31,11 +33,9 @@ public class CarWorkshopController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = "Owner")]
     public IActionResult Create() => View();
 
     [HttpPost]
-    [Authorize(Roles = "Owner")]
     [ViewValidation]
     public async Task<IActionResult> Create([FromForm] CreateCarWorkshopCommand command)
     {
@@ -46,6 +46,7 @@ public class CarWorkshopController : Controller
     }
 
     [HttpGet("{controller}/{encodedName}/Details")]
+    [AllowAnonymous]
     public async Task<IActionResult> Details([FromRoute] string encodedName)
     {
         var carWorkshop = await _mediator.Send(new GetCarWorkshopByNameQuery(encodedName));
@@ -53,7 +54,6 @@ public class CarWorkshopController : Controller
     }
 
     [HttpGet("{controller}/{encodedName}/Edit")]
-    [Authorize(Roles = "Owner")]
     public async Task<IActionResult> Edit([FromRoute] string encodedName)
     {
         var carWorkshop = await _mediator.Send(new GetCarWorkshopByNameQuery(encodedName));
@@ -66,7 +66,6 @@ public class CarWorkshopController : Controller
     }
 
     [HttpPost("{controller}/{encodedName}/Edit")]
-    [Authorize(Roles = "Owner")]
     [ViewValidation]
     public async Task<IActionResult> Edit([FromRoute] string encodedName,
                                           [FromForm] EditCarWorkshopCommand command)
@@ -76,6 +75,7 @@ public class CarWorkshopController : Controller
     }
 
     [HttpGet("{controller}/{encodedName}/CarWorkshopService")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAllServices([FromRoute] string encodedName,
                                                     [FromQuery] string? searchPhrase,
                                                     [FromQuery] int pageNumber,
