@@ -2,36 +2,27 @@
 
 <!-- Modal -->
 <div class="modal fade" id="getCarWorkshopServiceModal" tabindex="-1" role="dialog" aria-labelledby="getCarWorkshopServiceModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="container">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="getCarWorkshopServiceModalLabel">Service details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="getCarWorkshopServiceModalLabel">Service details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                <div class="modal-body">
-                    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="modal-body">
+                <p>Description: @Model.Description</p>
+                <p>Category: @Model.Category</p>
 
-                    <input asp-for="Id" type="hidden" />
+                @if (!string.IsNullOrEmpty(@Model.DetailedDescription))
+                {
+                    <p>Details: @Model.DetailedDescription</p>
+                }
 
-                    <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                    <label asp-for="Cost" class="control-label"></label>
-                    <input asp-for="Cost" class="form-control" />
-                    <span asp-validation-for="Cost" class="text-danger"></span>
-                    </div>*@
-                    <p>@Model.Description</p>
-                    <p>@Model.Cost</p>
-                </div>
+                <p>Service Cost: $@Model.Cost</p>
+            </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

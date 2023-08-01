@@ -40,7 +40,7 @@
                     <td>$@result.Cost</td>
                     <td>
                         <button type="button" class="btn btn-link custom-modal-button details" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = result.Id })" title="Details">
-                            <i class="bi bi-eye"></i>
+                            <i class="bi bi-info-circle"></i>
                         </button>
 
                         @if (Model.QueryResult.IsEditable)
@@ -54,7 +54,12 @@
                         } 
                         else
                         {
-                            // koszyk
+                            <button type="button" class="btn btn-link custom-modal-button add-to-cart" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = result.Id })" title="Add to Cart">
+                                <i class="bi bi-bag-plus"></i>
+                            </button>
+                            <button type="button" class="btn btn-link custom-modal-button make-order" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = result.Id })" title="Make order">
+                                <i class="bi bi-bag-check-fill"></i>
+                            </button>
                         }
                     </td>
                 </tr>

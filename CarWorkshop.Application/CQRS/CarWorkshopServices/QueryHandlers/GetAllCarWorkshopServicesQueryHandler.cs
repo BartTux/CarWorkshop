@@ -29,7 +29,8 @@ public class GetAllCarWorkshopServicesQueryHandler
     public async Task<QueryResponse<CarWorkshopServiceDTO>> Handle(GetAllCarWorkshopServicesQuery request,
                                                                    CancellationToken cancellationToken)
     {
-        var carWorkshop = await _carWorkshopRepository.GetByEncodedName(request.CarWorkshopEncodedName);
+        var carWorkshop = await _carWorkshopRepository
+            .GetByEncodedName(request.CarWorkshopEncodedName);
 
         var queryResult = await _carWorkshopServiceRepository
             .GetByEncodedName(
