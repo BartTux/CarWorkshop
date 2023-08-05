@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\js\\CarWorkshop\\_GetAllCarWorkshopServices.js"
     },
     {
+      "Id": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\wwwroot\\js\\Cart\\Index.js",
+      "PackagePath": "staticwebassets\\js\\Cart\\Index.js"
+    },
+    {
       "Id": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

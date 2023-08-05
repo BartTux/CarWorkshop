@@ -19,5 +19,16 @@ public class CartRepository : ICartRepository
             .Include(c => c.ServiceCarts)
                 .ThenInclude(sc => sc.CarWorkshopService)
             .FirstOrDefaultAsync(c => c.AddedById == userId)
-            ?? throw new Exception("No services detected");
+            ?? throw new Exception("No cart detected");
+
+    public async Task<CarWorkshopServiceCart> GetServiceForCart(int cartId, int serviceId)
+        => await _dbContext.ServiceCarts
+            .FirstOrDefaultAsync(sc => sc.CartId == cartId && sc.CarWorkshopServiceId == serviceId)
+            ?? throw new Exception("No cart service detected");
+
+    public async Task UpdateServiceQuantity(CarWorkshopServiceCart service)
+    {
+        _dbContext.ServiceCarts.Update(service);
+        await _dbContext.SaveChangesAsync();
+    }
 }

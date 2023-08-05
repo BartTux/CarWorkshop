@@ -41,9 +41,7 @@ $(document).ready(function () {
 
     $(document).on('click', '.custom-modal-button', function () {
         const url = $(this).data('url');
-        console.log(url);
         const decodedUrl = decodeURIComponent(url);
-        console.log(decodedUrl);
         
         $.get(decodedUrl).done(function (data) {
             $('#modalPlaceholder').html(data);

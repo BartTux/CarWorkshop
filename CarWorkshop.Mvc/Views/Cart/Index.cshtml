@@ -1,51 +1,9 @@
-﻿@using CarWorkshop.Application.Models;
-@model CartDTO
-
-@{
+﻿@{
     ViewData["Title"] = "Cart";
 }
 
-@if (Model.Services.Any())
-{
-    <table class="table-bordered">
-        <thead>
-            <tr>
-                <th class="p-3">Service</th>
-                <th class="p-3">Price per unit</th>
-                <th class="p-3">Qty</th>
-                <th class="p-3">Total price</th>
-                <th class="p-3">Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var service in Model.Services)
-            {
-                <tr>
-                    <td class="p-3">@service.Description</td>
-                    <td class="p-3">$<b>@service.Cost</b></td>
-                    <td class="p-3">@service.Quantity</td>
-                    <td class="p-3">$<b>@service.TotalCost</b></td>
-                    <td class="p-3">
-                        <button type="button" class="btn btn-link" @(service.Quantity <= 1 ? "disabled" : "")>
-                            <i class="bi bi-dash"></i>
-                        </button>
-                        <button type="button" class="btn btn-link">
-                            <i class="bi bi-plus"></i>
-                        </button>
-                        <button type="button" class="btn btn-link">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </td>
-                </tr>
-            }
-            <tr>
-                <td colspan="3" class="p-3">Total Sum:</td>
-                <td colspan="2" class="p-3">$<b>@Model.TotalSumCost</b></td>
-            </tr>
-        </tbody>
-    </table>
-}
-else
-{
-    <p>Your cart is empty</p>
+<div id="cart"></div>
+
+@section Scripts {
+    <script src="~/js/Cart/Index.js"></script>
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OocNHb5mEO7gwIHRXG+i76srRMz4Ba06E1BRUFFQpZ8=",
+  "Hash": "9Ex11Wn+QeZPQkzMw5IllJtpQ4R3AENIZrMy15dG+J4=",
   "Source": "CarWorkshop.Mvc",
   "BasePath": "_content/CarWorkshop.Mvc",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\wwwroot\\js\\Cart\\Index.js",
+      "SourceId": "CarWorkshop.Mvc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\wwwroot\\",
+      "BasePath": "_content/CarWorkshop.Mvc",
+      "RelativePath": "js/Cart/Index.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Cart\\Index.js"
     },
     {
       "Identity": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\wwwroot\\js\\CarWorkshop\\_GetAllCarWorkshopServices.js",

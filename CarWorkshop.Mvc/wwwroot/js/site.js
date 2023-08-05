@@ -11,12 +11,31 @@ const loadCarWorkshopServices = (searchPhrase = null, pageNumber = 1, pageSize =
         url: `/CarWorkshop/${carWorkshopEncodedName}/CarWorkshopService`,
         data: { searchPhrase: searchPhrase, pageNumber: pageNumber, pageSize: pageSize },
         type: 'GET',
+
         success: function (viewHtml) {
             if (!viewHtml.length)
                 container.html("There is no services for this car workshop");
             else
                 container.html(viewHtml);
         },
+
+        error: function () {
+            toastr["error"]("Something went wrong...");
+        }
+    });
+}
+
+const loadCartForUser = () => {
+    const container = $('#cart');
+
+    $.ajax({
+        url: '/Cart/Services',
+        type: 'GET',
+
+        success: function (viewHtml) {
+            container.html(viewHtml);
+        },
+
         error: function () {
             toastr["error"]("Something went wrong...");
         }
