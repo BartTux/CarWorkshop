@@ -7,6 +7,8 @@ public interface IUserContextService
 {
     public ClaimsPrincipal User { get; }
     public string UserId { get; }
+    public string UserEmail { get; }
+    public IEnumerable<string> UserRoles { get; }
 
     CurrentUser? GetCurrentUser();
 }
