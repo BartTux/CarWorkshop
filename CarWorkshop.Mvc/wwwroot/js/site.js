@@ -29,7 +29,7 @@ const loadCartForUser = () => {
     const container = $('#cart');
 
     $.ajax({
-        url: '/Cart/Services',
+        url: '/Cart/Service',
         type: 'GET',
 
         success: function (viewHtml) {
@@ -41,3 +41,22 @@ const loadCartForUser = () => {
         }
     });
 }
+
+const sendRequest = (urlPath, requestType, toastrInfo = null) => {
+    $.ajax({
+        url: urlPath,
+        type: requestType,
+
+        success: function () {
+            loadCartForUser();
+
+            if (toastrInfo !== null) {
+                toastr['success'](toastrInfo);
+            }
+        },
+
+        error: function () {
+            toastr['error']('Something went wrong...');
+        }
+    });
+};

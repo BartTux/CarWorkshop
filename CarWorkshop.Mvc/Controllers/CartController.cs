@@ -1,7 +1,8 @@
 ﻿using CarWorkshop.Application.CQRS.Carts.Queries;
+using CarWorkshop.Application.CQRS.Carts.Commands;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using CarWorkshop.Application.CQRS.Carts.Commands;
+using CarWorkshop.Mvc.ViewModels;
 
 namespace CarWorkshop.Mvc.Controllers;
 
@@ -17,18 +18,53 @@ public class CartController : Controller
     [HttpGet]
     public IActionResult Index() => View();
     
-    [HttpGet("/Cart/Services")]
+    [HttpGet("{controller}/Service")]
     public async Task<IActionResult> GetServices()
     {
-        var cartDto = await _mediator.Send(new GetCartForUserQuery());
-        return PartialView("~/Views/Shared/_GetCartForUser.cshtml", cartDto);
+        var model = await _mediator.Send(new GetAllCartServicesQuery());
+        var viewModel = new CartViewModel { CartServices = model };
+
+        return PartialView("~/Views/Shared/_GetCartServices.cshtml", viewModel);
     }
 
-    [HttpPatch("/Cart/{cartId}/Services/{carWorkshopServiceId}/Increase")]
-    public async Task<IActionResult> InreaseService([FromRoute] int cartId,
-                                                    [FromRoute] int carWorkshopServiceId)
+    [HttpPost("{controller}/Service/{serviceId}/Add")]
+    public async Task<IActionResult> AddService([FromRoute] int serviceId)
     {
-        await _mediator.Send(new IncreaseCartServiceCommand(cartId, carWorkshopServiceId));
+        var cartService = await _mediator.Send(new GetCartServiceQuery(serviceId));
+        var isCartServiceExist = cartService is not null;
+
+        if (isCartServiceExist)
+            return Json(new { url = Url.Action("IncreaseService", "Cart", new { serviceId }) });
+
+        await _mediator.Send(new AddServiceToCartCommand(serviceId));
+        return Ok();
+    }
+
+    [HttpPatch("{controller}/Service/{serviceId}/Increase")]
+    public async Task<IActionResult> IncreaseService([FromRoute] int serviceId)
+    {
+        await _mediator.Send(new IncreaseCartServiceCommand(serviceId));
+        return Ok();
+    }
+
+    [HttpPatch("{controller}/Service/{serviceId}/Decrease")]
+    public async Task<IActionResult> DecreaseService([FromRoute] int serviceId)
+    {
+        await _mediator.Send(new DecreaseCartServiceCommand(serviceId));
+        return Ok();
+    }
+
+    [HttpGet("{controller}/Service/{serviceId}/Delete")]
+    public IActionResult GetDeleteService([FromRoute] int serviceId)
+    {
+        var model = new DeleteCartServiceCommand(serviceId);
+        return PartialView("~/Views/Shared/_DeleteCartService.cshtml", model);
+    }
+
+    [HttpDelete("{controller}/Service/{serviceId}/Delete")]
+    public async Task<IActionResult> DeleteService([FromRoute] int serviceId)
+    {
+        await _mediator.Send(new DeleteCartServiceCommand(serviceId));
         return Ok();
     }
 }

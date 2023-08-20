@@ -10,11 +10,22 @@ public class UserContextService : IUserContextService
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly HttpContext _httpContext;
 
-    public ClaimsPrincipal User => _httpContext.User
-        ?? throw new InvalidOperationException("User context is not represented");
+    public ClaimsPrincipal User 
+        => _httpContext.User.Identity is not null && _httpContext.User.Identity.IsAuthenticated
+            ? _httpContext.User
+            : throw new InvalidOperationException("User is not authenticated");
 
-    public string UserId 
-        => User.FindFirst(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value;
+    public string UserId
+        => User.FindFirst(claim => claim.Type is ClaimTypes.NameIdentifier)?.Value
+            ?? throw new InvalidOperationException("User id not found in user context");
+
+    public string UserEmail
+        => User.FindFirst(claim => claim.Type is ClaimTypes.Email)?.Value
+            ?? throw new InvalidOperationException("User email not found in user context");
+
+    public IEnumerable<string> UserRoles => User.Claims
+        .Where(claim => claim.Type is ClaimTypes.Role)
+        .Select(claim => claim.Value);
 
     public UserContextService(IHttpContextAccessor httpContextAccessor)
     {
@@ -24,20 +35,5 @@ public class UserContextService : IUserContextService
             ?? throw new InvalidOperationException("Http context is not represented");
     }
 
-    public CurrentUser? GetCurrentUser()
-    {
-        var user = _httpContextAccessor?.HttpContext?.User
-            ?? throw new InvalidOperationException("User context is not represented");
-
-        if (user.Identity is null || !user.Identity.IsAuthenticated) return null;
-
-        var id = user.FindFirst(claim => claim.Type is ClaimTypes.NameIdentifier)!.Value;
-        var email = user.FindFirst(claim => claim.Type is ClaimTypes.Email)!.Value;
-
-        var roles = user.Claims
-            .Where(claim => claim.Type is ClaimTypes.Role)
-            .Select(claim => claim.Value);
-
-        return new(id, email, roles);
-    }
+    public CurrentUser? GetCurrentUser() => new(UserId, UserEmail, UserRoles);
 }

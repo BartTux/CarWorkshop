@@ -5,5 +5,5 @@ public record CartDTO
     public int Id { get; set; }
     public List<CartServiceDTO> Services { get; set; } = new();
 
-    public decimal TotalSumCost { get; set; }
+    public decimal TotalSumCost { get; set; } // To będzie w view modelu
 }

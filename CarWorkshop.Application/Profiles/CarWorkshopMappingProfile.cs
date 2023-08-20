@@ -11,7 +11,6 @@ internal class CarWorkshopMappingProfile : Profile
 {
     public CarWorkshopMappingProfile(IUserContextService userContextService)
     {
-        AllowNullCollections = true;
         var user = userContextService.GetCurrentUser();
 
         CreateMap<CarWorkshopDTO, Domain.Entities.CarWorkshop>()
@@ -48,8 +47,7 @@ internal class CarWorkshopMappingProfile : Profile
 
         CreateMap<CarWorkshopServiceDTO, EditCarWorkshopServiceCommand>();
 
-        CreateMap<Cart, CartDTO>();
-        CreateMap<CarWorkshopServiceCart, CartServiceDTO>()
+        CreateMap<CartService, CartServiceDTO>()
             .ForMember(dto => dto.Description, opt => opt.MapFrom(src => src.CarWorkshopService.Description))
             .ForMember(dto => dto.Cost, opt => opt.MapFrom(src => src.CarWorkshopService.Cost))
             .ForMember(dto => dto.TotalCost, opt => opt.MapFrom(src => src.CarWorkshopService.Cost * src.Quantity));

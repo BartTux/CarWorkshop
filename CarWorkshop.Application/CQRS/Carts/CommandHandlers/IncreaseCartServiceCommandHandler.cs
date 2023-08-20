@@ -1,4 +1,5 @@
 ﻿using CarWorkshop.Application.CQRS.Carts.Commands;
+using CarWorkshop.Application.Services.Contracts;
 using CarWorkshop.Domain.Contracts;
 using MediatR;
 
@@ -6,18 +7,20 @@ namespace CarWorkshop.Application.CQRS.Carts.CommandHandlers;
 
 public class IncreaseCartServiceCommandHandler : IRequestHandler<IncreaseCartServiceCommand>
 {
+    private readonly IUserContextService _userContextService;
     private readonly ICartRepository _repository;
 
-    public IncreaseCartServiceCommandHandler(ICartRepository repository)
+    public IncreaseCartServiceCommandHandler(IUserContextService userContextService,
+                                             ICartRepository repository)
     {
+        _userContextService = userContextService;
         _repository = repository;
     }
 
-    public async Task Handle(IncreaseCartServiceCommand request,
-                             CancellationToken cancellationToken)
+    public async Task Handle(IncreaseCartServiceCommand request, CancellationToken cancellationToken)
     {
-        var cartService = await _repository
-            .GetServiceForCart(request.cartId, request.carWorkshopServiceId);
+        var userId = _userContextService.UserId;
+        var cartService = await _repository.GetServiceById(userId, request.CarWorkshopServiceId);
 
         cartService.Quantity++;
 

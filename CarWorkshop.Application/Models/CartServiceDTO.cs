@@ -2,7 +2,7 @@
 
 public record CartServiceDTO
 {
-    public int CartId { get; set; }
+    public string UserId { get; set; } = default!;
     public int CarWorkshopServiceId { get; set; }
 
     public string Description { get; set; } = default!;

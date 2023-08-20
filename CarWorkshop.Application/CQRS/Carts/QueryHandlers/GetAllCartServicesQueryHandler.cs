@@ -7,13 +7,13 @@ using AutoMapper;
 
 namespace CarWorkshop.Application.CQRS.Carts.QueryHandlers;
 
-public class GetCartForUserQueryHandler : IRequestHandler<GetCartForUserQuery, CartDTO>
+public class GetAllCartServicesQueryHandler : IRequestHandler<GetAllCartServicesQuery, List<CartServiceDTO>>
 {
     private readonly IUserContextService _userContextService;
     private readonly ICartRepository _repository;
     private readonly IMapper _mapper;
 
-    public GetCartForUserQueryHandler(IUserContextService userContextService,
+    public GetAllCartServicesQueryHandler(IUserContextService userContextService,
                                       ICartRepository repository,
                                       IMapper mapper)
     {
@@ -22,20 +22,14 @@ public class GetCartForUserQueryHandler : IRequestHandler<GetCartForUserQuery, C
         _mapper = mapper;
     }
 
-    public async Task<CartDTO> Handle(GetCartForUserQuery request, CancellationToken cancellationToken)
+    public async Task<List<CartServiceDTO>> Handle(GetAllCartServicesQuery request,
+                                                   CancellationToken cancellationToken)
     {
         var userId = _userContextService.UserId;
-        var cart = await _repository.GetCartWithServicesForUser(userId);
-        
-        var cartDto = _mapper.Map<CartDTO>(cart);
-        
-        cartDto.Services = cart.ServiceCarts
-            .Select(_mapper.Map<CartServiceDTO>)
-            .ToList();
+        var cartServices = await _repository.GetAllServices(userId);
 
-        cartDto.Services
-            .ForEach(s => cartDto.TotalSumCost += s.TotalCost);
+        var cartServiceDtos = _mapper.Map<List<CartServiceDTO>>(cartServices);
 
-        return cartDto;
+        return cartServiceDtos;
     }
 }

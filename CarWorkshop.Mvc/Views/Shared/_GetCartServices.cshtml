@@ -1,8 +1,9 @@
-﻿@using CarWorkshop.Application.Models;
-@model CartDTO
+﻿@model CartViewModel;
 
-@if (Model.Services.Any())
+@if (Model.CartServices.Any())
 {
+    <div id="modalPlaceholder"></div>
+
     <table class="table-bordered">
         <thead>
             <tr>
@@ -14,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var service in Model.Services)
+            @foreach (var service in Model.CartServices)
             {
                 <tr>
                     <td class="p-3">@service.Description</td>
@@ -22,13 +23,14 @@
                     <td class="p-3">@service.Quantity</td>
                     <td class="p-3">$<b>@service.TotalCost</b></td>
                     <td class="p-3">
-                        <button type="button" class="btn btn-link" @(service.Quantity <= 1 ? "disabled" : "") title="Descrease one">
-                            <i class="bi bi-dash"></i>
+                        <button type="button" class="btn btn-link decreaseServiceInCart" data-service-id="@service.CarWorkshopServiceId"
+                            @(service.Quantity <= 1 ? "disabled" : "") title="Descrease one">
+                                <i class="bi bi-dash"></i>
                         </button>
-                        <button type="button" class="btn btn-link increaseServiceInCart" data-service-id="@service.CartId, @service.CarWorkshopServiceId" title="Add one more">
+                        <button type="button" class="btn btn-link increaseServiceInCart" data-service-id="@service.CarWorkshopServiceId" title="Add one more">
                             <i class="bi bi-plus"></i>
                         </button>
-                        <button type="button" class="btn btn-link" title="Remove item">
+                        <button type="button" class="btn btn-link deleteCartService" data-service-id="@service.CarWorkshopServiceId" title="Remove item">
                             <i class="bi bi-trash-fill"></i>
                         </button>
                     </td>
@@ -36,7 +38,7 @@
             }
             <tr>
                 <td colspan="3" class="p-3">Total Sum:</td>
-                <td colspan="2" class="p-3">$<b>@Model.TotalSumCost</b></td>
+                <td colspan="2" class="p-3">$<b>@Model.TotalServicesCost</b></td>
             </tr>
         </tbody>
     </table>

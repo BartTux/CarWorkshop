@@ -1,6 +1,7 @@
 $(document).ready(function () {
     const modal = bootstrap.Modal;
     const enterCode = 13;
+    const okCode = 200;
 
     var searchPhrase = $('.custom-search').val();
     var pageNumber = $('.page-link .bg-primary').data('pageNumber');
@@ -39,6 +40,7 @@ $(document).ready(function () {
         }
     });
 
+    // Universal method
     $(document).on('click', '.custom-modal-button', function () {
         const url = $(this).data('url');
         const decodedUrl = decodeURIComponent(url);
@@ -46,6 +48,30 @@ $(document).ready(function () {
         $.get(decodedUrl).done(function (data) {
             $('#modalPlaceholder').html(data);
             modal.getOrCreateInstance($('#modalPlaceholder').find('.modal')).show();
+        });
+    });
+
+    $(document).on('click', '.add-to-cart', function () {
+        const url = $(this).data('url');
+        const decodedUrl = decodeURIComponent(url);
+
+        $.ajax({
+            url: decodedUrl,
+            type: 'post',
+
+            success: function (response, textStatus, xhr) {
+                if (xhr.getResponseHeader('Content-Type') === 'application/json; charset=utf-8') {
+                    const toastrInfo = 'The amount of service in the cart has been increased';
+                    sendRequest(response.url, 'patch', toastrInfo);
+                } else if (xhr.status === okCode) {
+                    toastr['success']('Service added into cart');
+                } 
+            },
+
+            error: function (e) {
+                toastr['error']('Something went wrong...');
+                console.log(e);
+            }
         });
     });
 

@@ -4,7 +4,10 @@ namespace CarWorkshop.Domain.Contracts;
 
 public interface ICartRepository
 {
-    Task<Cart> GetCartWithServicesForUser(string userId);
-    Task<CarWorkshopServiceCart> GetServiceForCart(int cartId, int serviceId);
-    Task UpdateServiceQuantity(CarWorkshopServiceCart service);
+    Task<List<CartService>> GetAllServices(string userId);
+    Task<CartService?> GetServiceById(string userId, int serviceId);
+    Task AddServiceToCart(CartService cartService);
+    Task UpdateServiceQuantity(CartService service);
+    Task DeleteServiceFromCart(CartService serviceCart);
+    Task<bool> IsServiceInCart(string userId, int serviceId);
 }

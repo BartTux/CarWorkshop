@@ -8,8 +8,7 @@ public class CarWorkshopDbContext : IdentityDbContext
 {
     public DbSet<Domain.Entities.CarWorkshop> CarWorkshops { get; set; }
     public DbSet<CarWorkshopService> Services { get; set; }
-    public DbSet<Cart> Cart { get; set; }
-    public DbSet<CarWorkshopServiceCart> ServiceCarts { get; set; }
+    public DbSet<CartService> CartServices { get; set; }
 
     public CarWorkshopDbContext(DbContextOptions<CarWorkshopDbContext> options) 
         : base(options) { }
@@ -34,23 +33,23 @@ public class CarWorkshopDbContext : IdentityDbContext
             .HasPrecision(18, 2);
 
         modelBuilder
-            .Entity<CarWorkshopServiceCart>()
-            .HasKey(c => new { c.CartId, c.CarWorkshopServiceId });
+            .Entity<CartService>()
+            .HasKey(c => new { c.AddedById, c.CarWorkshopServiceId });
 
         modelBuilder
-            .Entity<CarWorkshopServiceCart>()
-            .HasOne(c => c.Cart)
-            .WithMany(c => c.ServiceCarts)
-            .HasForeignKey(c => c.CartId);
+            .Entity<CartService>()
+            .HasOne(c => c.AddedBy)
+            .WithMany()
+            .HasForeignKey(c => c.AddedById);
 
         modelBuilder
-            .Entity<CarWorkshopServiceCart>()
+            .Entity<CartService>()
             .HasOne(c => c.CarWorkshopService)
-            .WithMany(c => c.ServiceCarts)
+            .WithMany()
             .HasForeignKey(c => c.CarWorkshopServiceId);
 
         modelBuilder
-            .Entity<CarWorkshopServiceCart>()
+            .Entity<CartService>()
             .Property(c => c.Quantity)
             .IsRequired();
     }

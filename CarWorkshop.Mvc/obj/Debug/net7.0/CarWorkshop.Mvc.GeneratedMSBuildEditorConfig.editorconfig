@@ -68,6 +68,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DcmVhdGVDYXJXb3Jrc2hvcFNlcnZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_DeleteCartService.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EZWxldGVDYXJ0U2VydmljZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_DeleteCarWorkshopService.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EZWxldGVDYXJXb3Jrc2hvcFNlcnZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -80,8 +84,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRBbGxDYXJXb3Jrc2hvcFNlcnZpY2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_GetCartForUser.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRDYXJ0Rm9yVXNlci5jc2h0bWw=
+[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_GetCartServices.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRDYXJ0U2VydmljZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_LoginPartial.cshtml]

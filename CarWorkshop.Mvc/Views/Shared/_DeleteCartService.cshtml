@@ -1,0 +1,24 @@
+﻿@using CarWorkshop.Application.CQRS.Carts.Commands;
+@model DeleteCartServiceCommand;
+
+<!-- Modal -->
+<div class="modal fade" id="DeleteCartServiceModal" tabindex="-1" role="dialog" aria-labelledby="deleteCartServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-controller="Cart" asp-action="DeleteService" asp-route-serviceId="@Model.CarWorkshopServiceId" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteCartServiceModalLabel">Delete cart service</h5>
+                    <button type="button" class="custom-modal-close-button btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this item?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

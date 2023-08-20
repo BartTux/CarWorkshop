@@ -10,6 +10,4 @@ public class CarWorkshopService
 
     public int CarWorkshopId { get; set; }
     public CarWorkshop CarWorkshop { get; set; } = default!;
-
-    public virtual List<CarWorkshopServiceCart> ServiceCarts { get; set; } = new();
 }

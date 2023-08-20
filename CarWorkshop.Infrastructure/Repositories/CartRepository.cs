@@ -14,21 +14,38 @@ public class CartRepository : ICartRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Cart> GetCartWithServicesForUser(string userId)
-        => await _dbContext.Cart
-            .Include(c => c.ServiceCarts)
-                .ThenInclude(sc => sc.CarWorkshopService)
-            .FirstOrDefaultAsync(c => c.AddedById == userId)
-            ?? throw new Exception("No cart detected");
+    public async Task<List<CartService>> GetAllServices(string userId)
+        => await _dbContext.CartServices
+            .Include(cs => cs.CarWorkshopService)
+            .Where(cs => cs.AddedById == userId)
+            .ToListAsync();
 
-    public async Task<CarWorkshopServiceCart> GetServiceForCart(int cartId, int serviceId)
-        => await _dbContext.ServiceCarts
-            .FirstOrDefaultAsync(sc => sc.CartId == cartId && sc.CarWorkshopServiceId == serviceId)
-            ?? throw new Exception("No cart service detected");
+    public async Task<CartService?> GetServiceById(string userId, int serviceId)
+        => await _dbContext.CartServices
+            .Include(cs => cs.CarWorkshopService)
+            .FirstOrDefaultAsync(cs => cs.AddedById == userId && cs.CarWorkshopServiceId == serviceId);
 
-    public async Task UpdateServiceQuantity(CarWorkshopServiceCart service)
+    public async Task AddServiceToCart(CartService cartService)
     {
-        _dbContext.ServiceCarts.Update(service);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.CartServices.AddAsync(cartService);
+        await SaveChangesAsync();
     }
+
+    public async Task UpdateServiceQuantity(CartService service)
+    {
+        _dbContext.CartServices.Update(service);
+        await SaveChangesAsync();
+    }
+
+    public async Task DeleteServiceFromCart(CartService serviceCart)
+    {
+        _dbContext.CartServices.Remove(serviceCart);
+        await SaveChangesAsync();
+    }
+
+    public async Task SaveChangesAsync() => await _dbContext.SaveChangesAsync();
+
+    public async Task<bool> IsServiceInCart(string userId, int serviceId)
+        => await _dbContext.CartServices
+            .AnyAsync(cs => cs.AddedById == userId && cs.CarWorkshopServiceId == serviceId);
 }

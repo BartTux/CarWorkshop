@@ -33,31 +33,31 @@
         </thead>
 
         <tbody>
-            @foreach (var result in Model.QueryResult.Data)
+            @foreach (var data in Model.QueryResult.Data)
             {
                 <tr>
-                    <td>@result.Description</td>
-                    <td>$@result.Cost</td>
+                    <td>@data.Description</td>
+                    <td>$@data.Cost</td>
                     <td>
-                        <button type="button" class="btn btn-link custom-modal-button details" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = result.Id })" title="Details">
+                        <button type="button" class="btn btn-link custom-modal-button details" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = data.Id })" title="Details">
                             <i class="bi bi-info-circle"></i>
                         </button>
 
                         @if (Model.QueryResult.IsEditable)
                         {
-                            <button type="button" class="btn btn-link custom-modal-button edit" data-url="@Url.Action("Edit", "CarWorkshopService", new { serviceId = result.Id })" title="Edit">
+                            <button type="button" class="btn btn-link custom-modal-button edit" data-url="@Url.Action("Edit", "CarWorkshopService", new { serviceId = data.Id })" title="Edit">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <button type="button" class="btn btn-link custom-modal-button delete" data-url="@Url.Action("Delete", "CarWorkshopService", new { serviceId = result.Id })" title="Delete">
+                            <button type="button" class="btn btn-link custom-modal-button delete" data-url="@Url.Action("Delete", "CarWorkshopService", new { serviceId = data.Id })" title="Delete">
                                 <i class="bi bi-trash-fill"></i>
                             </button>
                         } 
                         else
                         {
-                            <button type="button" class="btn btn-link custom-modal-button add-to-cart" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = result.Id })" title="Add to Cart">
+                            <button type="button" class="btn btn-link add-to-cart" data-url="@Url.Action("AddService", "Cart", new { serviceId = data.Id })" title="Add to Cart">
                                 <i class="bi bi-bag-plus"></i>
                             </button>
-                            <button type="button" class="btn btn-link custom-modal-button make-order" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = result.Id })" title="Make order">
+                            <button type="button" class="btn btn-link custom-modal-button make-order" data-url="@Url.Action("Details", "CarWorkshopService", new { serviceId = data.Id })" title="Make order">
                                 <i class="bi bi-bag-check-fill"></i>
                             </button>
                         }

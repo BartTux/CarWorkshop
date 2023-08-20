@@ -90,10 +90,10 @@ namespace CarWorkshop.Infrastructure.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("CarWorkshop.Domain.Entities.CarWorkshopServiceCart", b =>
+            modelBuilder.Entity("CarWorkshop.Domain.Entities.CartService", b =>
                 {
-                    b.Property<int>("CartId")
-                        .HasColumnType("int");
+                    b.Property<string>("AddedById")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("CarWorkshopServiceId")
                         .HasColumnType("int");
@@ -101,30 +101,11 @@ namespace CarWorkshop.Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("CartId", "CarWorkshopServiceId");
+                    b.HasKey("AddedById", "CarWorkshopServiceId");
 
                     b.HasIndex("CarWorkshopServiceId");
 
-                    b.ToTable("ServiceCarts");
-                });
-
-            modelBuilder.Entity("CarWorkshop.Domain.Entities.Cart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AddedById")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddedById");
-
-                    b.ToTable("Cart");
+                    b.ToTable("CartServices");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -378,26 +359,7 @@ namespace CarWorkshop.Infrastructure.Migrations
                     b.Navigation("CarWorkshop");
                 });
 
-            modelBuilder.Entity("CarWorkshop.Domain.Entities.CarWorkshopServiceCart", b =>
-                {
-                    b.HasOne("CarWorkshop.Domain.Entities.CarWorkshopService", "CarWorkshopService")
-                        .WithMany("ServiceCarts")
-                        .HasForeignKey("CarWorkshopServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CarWorkshop.Domain.Entities.Cart", "Cart")
-                        .WithMany("ServiceCarts")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CarWorkshopService");
-
-                    b.Navigation("Cart");
-                });
-
-            modelBuilder.Entity("CarWorkshop.Domain.Entities.Cart", b =>
+            modelBuilder.Entity("CarWorkshop.Domain.Entities.CartService", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "AddedBy")
                         .WithMany()
@@ -405,7 +367,15 @@ namespace CarWorkshop.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarWorkshop.Domain.Entities.CarWorkshopService", "CarWorkshopService")
+                        .WithMany()
+                        .HasForeignKey("CarWorkshopServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("AddedBy");
+
+                    b.Navigation("CarWorkshopService");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -462,16 +432,6 @@ namespace CarWorkshop.Infrastructure.Migrations
             modelBuilder.Entity("CarWorkshop.Domain.Entities.CarWorkshop", b =>
                 {
                     b.Navigation("Services");
-                });
-
-            modelBuilder.Entity("CarWorkshop.Domain.Entities.CarWorkshopService", b =>
-                {
-                    b.Navigation("ServiceCarts");
-                });
-
-            modelBuilder.Entity("CarWorkshop.Domain.Entities.Cart", b =>
-                {
-                    b.Navigation("ServiceCarts");
                 });
 #pragma warning restore 612, 618
         }
