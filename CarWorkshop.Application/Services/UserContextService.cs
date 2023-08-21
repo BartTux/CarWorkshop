@@ -15,13 +15,11 @@ public class UserContextService : IUserContextService
             ? _httpContext.User
             : throw new InvalidOperationException("User is not authenticated");
 
-    public string UserId
-        => User.FindFirst(claim => claim.Type is ClaimTypes.NameIdentifier)?.Value
-            ?? throw new InvalidOperationException("User id not found in user context");
+    public string UserId => FindClaim(ClaimTypes.NameIdentifier)
+        ?? throw new InvalidOperationException("User id not found in user context");
 
-    public string UserEmail
-        => User.FindFirst(claim => claim.Type is ClaimTypes.Email)?.Value
-            ?? throw new InvalidOperationException("User email not found in user context");
+    public string UserEmail => FindClaim(ClaimTypes.Email)
+        ?? throw new InvalidOperationException("User email not found in user context");
 
     public IEnumerable<string> UserRoles => User.Claims
         .Where(claim => claim.Type is ClaimTypes.Role)
@@ -36,4 +34,7 @@ public class UserContextService : IUserContextService
     }
 
     public CurrentUser? GetCurrentUser() => new(UserId, UserEmail, UserRoles);
+
+    private string? FindClaim(string claimType) 
+        => User.FindFirst(claim => claim.Type == claimType)?.Value;
 }

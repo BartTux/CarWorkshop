@@ -32,7 +32,7 @@ public class CartController : Controller
     {
         var cartService = await _mediator.Send(new GetCartServiceQuery(serviceId));
         var isCartServiceExist = cartService is not null;
-
+            
         if (isCartServiceExist)
             return Json(new { url = Url.Action("IncreaseService", "Cart", new { serviceId }) });
 
