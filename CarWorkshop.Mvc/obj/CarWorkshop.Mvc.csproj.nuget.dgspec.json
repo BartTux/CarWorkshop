@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj": {}
+    "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj": {
+    "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj",
+        "projectUniqueName": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj",
         "projectName": "CarWorkshop.Application",
-        "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\obj\\",
+        "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj",
+        "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -33,8 +34,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj"
+              "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj": {
+                "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj"
               }
             }
           }
@@ -86,24 +87,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj": {
+    "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj",
         "projectName": "CarWorkshop.Domain",
-        "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\CarWorkshop.Domain.csproj",
+        "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -152,24 +154,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj": {
+    "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj",
         "projectName": "CarWorkshop.Infrastructure",
-        "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -185,8 +188,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj"
+              "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj": {
+                "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj"
               }
             }
           }
@@ -236,24 +239,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj": {
+    "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj",
+        "projectUniqueName": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj",
         "projectName": "CarWorkshop.Mvc",
-        "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\obj\\",
+        "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\CarWorkshop.Mvc.csproj",
+        "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Mvc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -263,17 +267,18 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.307\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj"
+              "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj": {
+                "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Application\\CarWorkshop.Application.csproj"
               },
-              "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\User\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj"
+              "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Bartek\\source\\repos\\CarWorkshop\\CarWorkshop.Infrastructure\\CarWorkshop.Infrastructure.csproj"
               }
             }
           }
@@ -322,7 +327,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
         }
       }
     }

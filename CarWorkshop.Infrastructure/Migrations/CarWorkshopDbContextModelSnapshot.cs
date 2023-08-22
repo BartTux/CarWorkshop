@@ -69,7 +69,6 @@ namespace CarWorkshop.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Category")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Cost")

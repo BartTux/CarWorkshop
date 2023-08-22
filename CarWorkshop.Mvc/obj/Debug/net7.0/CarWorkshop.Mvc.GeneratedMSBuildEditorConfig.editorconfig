@@ -9,101 +9,101 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CarWorkshop.Mvc
 build_property.RootNamespace = CarWorkshop.Mvc
-build_property.ProjectDir = C:\Users\User\source\repos\CarWorkshop\CarWorkshop.Mvc\
+build_property.ProjectDir = C:\Users\Bartek\source\repos\CarWorkshop\CarWorkshop.Mvc\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\Users\User\source\repos\CarWorkshop\CarWorkshop.Mvc
+build_property.MSBuildProjectDirectory = C:\Users\Bartek\source\repos\CarWorkshop\CarWorkshop.Mvc
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Cart/Index.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Cart/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Create.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyV29ya3Nob3BcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Details.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyV29ya3Nob3BcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Edit.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyV29ya3Nob3BcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Index.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/CarWorkshop/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FyV29ya3Nob3BcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/About.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/Index.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/NoAccess.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/NoAccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb0FjY2Vzcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/Privacy.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/Error.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_CarWorkshopServiceDetails.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_CarWorkshopServiceDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DYXJXb3Jrc2hvcFNlcnZpY2VEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_CreateCarWorkshopService.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_CreateCarWorkshopService.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DcmVhdGVDYXJXb3Jrc2hvcFNlcnZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_DeleteCartService.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_DeleteCartService.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EZWxldGVDYXJ0U2VydmljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_DeleteCarWorkshopService.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_DeleteCarWorkshopService.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9EZWxldGVDYXJXb3Jrc2hvcFNlcnZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_EditCarWorkshopService.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_EditCarWorkshopService.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FZGl0Q2FyV29ya3Nob3BTZXJ2aWNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_GetAllCarWorkshopServices.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_GetAllCarWorkshopServices.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRBbGxDYXJXb3Jrc2hvcFNlcnZpY2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_GetCartServices.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_GetCartServices.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9HZXRDYXJ0U2VydmljZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/_ViewImports.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/_ViewStart.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/User/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_Layout.cshtml]
+[C:/Users/Bartek/source/repos/CarWorkshop/CarWorkshop.Mvc/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-jjn4ha39g3

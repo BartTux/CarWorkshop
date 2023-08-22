@@ -5,7 +5,7 @@ public class CarWorkshopService
     public int Id { get; set; }
     public string Description { get; set; } = default!;
     public string? DetailedDescription { get; set; }
-    public string Category { get; set; } = default!;
+    public string? Category { get; set; }
     public decimal Cost { get; set; }
 
     public int CarWorkshopId { get; set; }
