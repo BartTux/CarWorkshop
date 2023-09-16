@@ -31,30 +31,42 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark @(currentController is "Home" && currentAction is "Index" ? "active" : "")"
+                            <a class="nav-link @(currentController is "Home" && currentAction is "Index" ? "text-primary" : "text-dark")"
                                asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark @(currentController is "Home" && currentAction is "Privacy" ? "active" : "")"
+                            <a class="nav-link @(currentController is "Home" && currentAction is "Privacy" ? "text-primary" : "text-dark")"
                                asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark @(currentController is "Home" && currentAction is "About" ? "active" : "")"
+                            <a class="nav-link @(currentController is "Home" && currentAction is "About" ? "text-primary" : "text-dark")"
                                asp-area="" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark @(currentController is "CarWorkshop" && currentAction is "Index" ? "active" : "")"
+                            <a class="nav-link @(currentController is "CarWorkshop" && currentAction is "Index" ? "text-primary" : "text-dark")"
                                asp-area="" asp-controller="CarWorkshop" asp-action="Index">Car Workshops</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="CarWorkshop" asp-action="Favorite" title="Favorites">
+                                <i class="@(currentController is "Favourite" ? "bi bi-heart-fill" : "bi bi-heart")"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index" title="Cart">
+                                <i class="@(currentController is "Cart" ? "bi bi-bag-fill" : "bi bi-bag")"></i>
+                            </a>
+                        </li>
+                        <partial name="_LoginPartial" />
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
 
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-3 mt-5">
             @RenderBody()
         </main>
     </div>

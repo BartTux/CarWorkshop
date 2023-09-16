@@ -10,23 +10,23 @@ public class UserContextService : IUserContextService
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly HttpContext _httpContext;
 
-    public ClaimsPrincipal User 
-        => _httpContext.User.Identity is not null && _httpContext.User.Identity.IsAuthenticated
-            ? _httpContext.User
-            : throw new InvalidOperationException("User is not authenticated");
+    public ClaimsPrincipal User => _httpContext.User;
+    /*=> _httpContext.User.Identity is not null && _httpContext.User.Identity.IsAuthenticated
+        ? _httpContext.User
+        : throw new InvalidOperationException("User is not authenticated");*/
 
-    public string UserId => FindClaim(ClaimTypes.NameIdentifier)
-        ?? throw new InvalidOperationException("User id not found in user context");
+    public string UserId => FindClaim(ClaimTypes.NameIdentifier);
+    //?? throw new InvalidOperationException("User id not found in user context");
 
-    public string UserEmail => FindClaim(ClaimTypes.Email)
-        ?? throw new InvalidOperationException("User email not found in user context");
+    public string UserEmail => FindClaim(ClaimTypes.Email);
+        //?? throw new InvalidOperationException("User email not found in user context");
 
     public IEnumerable<string> UserRoles => User.Claims
         .Where(claim => claim.Type is ClaimTypes.Role)
         .Select(claim => claim.Value);
 
     public UserContextService(IHttpContextAccessor httpContextAccessor)
-    {
+    { 
         _httpContextAccessor = httpContextAccessor;
 
         _httpContext = _httpContextAccessor.HttpContext

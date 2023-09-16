@@ -2,29 +2,110 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 
-@model IEnumerable<CarWorkshopDTO>
+@model CarWorkshopViewModel
 @{
     ViewData["Title"] = "Car Workshops";
 }
 
-<h4 class="float-start">Car Workshops</h4>
+<style scoped>
+    .rating-color {
+        color: #fbc634 !important;
+    }
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <p class="float-end"><a asp-action="Create" class="btn btn-secondary">Create New</a></p>
-}
+    .non-rating-color {
+        color: #cecece !important;
+    }
 
-<div class="clearfix"></div>
-<hr />
+    .fs-14px {
+        font-size: 14px;
+    }
+</style>
 
-<div class="row">
-    @foreach(var item in Model) 
+<div class="d-flex justify-content-between align-items-end">
+    <h4 class="h5 mt-2 my-0">Car Workshops</h4>
+
+    <div class="row align-items-end">
+        <div class="col-auto">
+            <form class="row">
+                <div class="col-auto">
+                    <label for="city" class="fs-14px">City:</label>
+                    <select class="form-select form-select-sm" id="city">
+                        @foreach (var item in Model.Cities)
+                        {
+                            <option>@item</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <label for="sortBy" class="fs-14px">Sort by:</label>
+                    <select class="form-select form-select-sm" id="sortBy">
+                        <option>Brand: A - Z</option>
+                        <option>Brand: Z - A</option>
+                        <option>Customer Rating</option>
+                        <option>Newest</option>
+                    </select>
+                </div>
+
+                <div class="col-auto">
+                    <label for="itemsPerPage" class="fs-14px">Items per page:</label>
+                    <select class="form-select form-select-sm" id="itemsPerPage">
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                        <option>25</option>
+                        <option>30</option>
+                    </select>
+                </div>
+
+                 <div class="col-auto">
+                    <label for="searchbox" class="fs-14px">Search:</label>
+                    <div class="input-group input-group-sm rounded">
+                        <input type="search" class="custom-search form-control rounded-start" id="searchbox"
+                               value="" placeholder="Workshop's name" aria-label="Search" aria-describedby="search-addon" />
+
+                        <button type="button" class="btn btn-primary custom-search-button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-auto">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a asp-action="Create" class="btn btn-secondary" style="margin-left: 30px;">Create New</a>
+            }
+        </div>
+    </div>
+</div>
+
+<hr class="mt-2" />
+
+<div class="row d-flex justify-content-around">
+    @foreach(var item in Model.CarWorkshops) 
     {
         <div class="card m-3" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">@item.Name</h5>
-                <h6 class="card-subtitle mb-2 text-muted">@item.PhoneNumber</h6>
-                <p class="card-text">@item.Description</p>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title fw-bold m-0" style="font-size: 14px">@item.Name</h5>
+                    <div class="small-ratings" style="font-size: 12px;">
+                        <i class="bi bi-star-fill rating-color"></i>
+                        <i class="bi bi-star-fill rating-color"></i>
+                        <i class="bi bi-star-fill rating-color"></i>
+                        <i class="bi bi-star-fill non-rating-color"></i>
+                        <i class="bi bi-star-fill non-rating-color"></i>
+                    </div>
+
+                </div>
+                
+                <p class="card-subtitle text-muted mb-3" style="font-size: 14px">@item.Description</p>
+
+                <p class="card-text mb-0" style="font-size: 14px"><i class="bi bi-geo-alt-fill" style="margin-right: 7px;"></i>@item.City</p>
+                <p class="card-text" style="font-size: 14px"><i class="bi bi-telephone-fill" style="margin-right: 7px;"></i>@item.PhoneNumber</p>
+
+                <hr />
 
                 <a class="btn btn-primary" asp-controller="CarWorkshop" asp-action="Details" asp-route-encodedName="@item.EncodedName">Details</a>
 

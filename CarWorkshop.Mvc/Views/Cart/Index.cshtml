@@ -2,7 +2,23 @@
     ViewData["Title"] = "Cart";
 }
 
-<div id="cart"></div>
+<div class="container">
+    <div class="row mt-5">
+        <div id="cart" class="col-9">@* View from _GetCartServices.cshtml *@</div>
+        <div class="col-3 border">
+            <div class="d-flex justify-content-between mt-3">
+                <p>Total price:</p>
+                <p>$<b>600</b></p>
+            </div>
+
+            <hr />
+            
+            <button class="btn btn-primary w-100 mt-2"><i class="bi bi-bag-check mx-2"></i>Make order</button>
+            <button class="btn btn-danger w-100 mt-2"><i class="bi bi-trash mx-1"></i>Clean cart</button>
+            <button class="btn btn-link w-100 mt-2">Continue shopping</button>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     <script src="~/js/Cart/Index.js"></script>

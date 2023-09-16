@@ -4,11 +4,11 @@
 {
     <div id="modalPlaceholder"></div>
 
-    <table class="table-bordered">
+    <table class="table">
         <thead>
             <tr>
                 <th class="p-3">Service</th>
-                <th class="p-3">Price per unit</th>
+                <th class="p-3">Price</th>
                 <th class="p-3">Qty</th>
                 <th class="p-3">Total price</th>
                 <th class="p-3">Options</th>
@@ -25,10 +25,10 @@
                     <td class="p-3">
                         <button type="button" class="btn btn-link decreaseServiceInCart" data-service-id="@service.CarWorkshopServiceId"
                             @(service.Quantity <= 1 ? "disabled" : "") title="Descrease one">
-                                <i class="bi bi-dash"></i>
+                            <i class="bi bi-dash" style="font-size: 15px;"></i>
                         </button>
                         <button type="button" class="btn btn-link increaseServiceInCart" data-service-id="@service.CarWorkshopServiceId" title="Add one more">
-                            <i class="bi bi-plus"></i>
+                            <i class="bi bi-plus" style="font-size: 15px;"></i>
                         </button>
                         <button type="button" class="btn btn-link deleteCartService" data-service-id="@service.CarWorkshopServiceId" title="Remove item">
                             <i class="bi bi-trash-fill"></i>
@@ -37,7 +37,7 @@
                 </tr>
             }
             <tr>
-                <td colspan="3" class="p-3">Total Sum:</td>
+                <td colspan="3" class="p-3 fw-bold">Total Sum:</td>
                 <td colspan="2" class="p-3">$<b>@Model.TotalServicesCost</b></td>
             </tr>
         </tbody>

@@ -3,9 +3,11 @@ using CarWorkshop.Application.CQRS.Carts.Commands;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using CarWorkshop.Mvc.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarWorkshop.Mvc.Controllers;
 
+[Authorize(Roles = "Owner")]
 public class CartController : Controller
 {
     private readonly IMediator _mediator;

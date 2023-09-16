@@ -65,7 +65,7 @@ $(document).ready(function () {
                     sendRequest(response.url, 'patch', toastrInfo);
                 } else if (xhr.status === okCode) {
                     toastr['success']('Service added into cart');
-                } 
+                }
             },
 
             error: function (e) {

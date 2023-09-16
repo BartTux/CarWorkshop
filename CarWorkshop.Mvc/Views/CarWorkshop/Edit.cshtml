@@ -3,7 +3,13 @@
 
 @model EditCarWorkshopCommand
 
-<h4>Edit @Model.Name</h4>
+<style scoped>
+    .fs-14px {
+        font-size: 14px;
+    }        
+</style>
+
+<h4 class="h5">Edit @Model.Name</h4>
 <hr>
 
 <div class="row">
@@ -12,37 +18,37 @@
             <input type="hidden" asp-for="EncodedName" />
 
             <div class="form-group mb-3">
-                <label class="control-label" asp-for="About">About</label>
+                <label class="control-label fs-14px" asp-for="About"></label>
                 <input class="form-control" type="text" asp-for="About">
                 <span asp-validation-for="About" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" asp-for="PhoneNumber">Phone Number</label>
+                <label class="control-label fs-14px" asp-for="PhoneNumber"></label>
                 <input class="form-control" type="text" asp-for="PhoneNumber">
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" asp-for="City">City</label>
+                <label class="control-label fs-14px" asp-for="City"></label>
                 <input class="form-control" type="text" asp-for="City">
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" asp-for="Street">Street</label>
+                <label class="control-label fs-14px" asp-for="Street"></label>
                 <input class="form-control" type="text" asp-for="Street">
                 <span asp-validation-for="Street" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" asp-for="PostalCode">PostalCode</label>
+                <label class="control-label fs-14px" asp-for="PostalCode"></label>
                 <input class="form-control" type="text" asp-for="PostalCode">
                 <span asp-validation-for="PostalCode" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label class="control-label" asp-for="Description">Description</label>
+                <label class="control-label fs-14px" asp-for="Description"></label>
                 <textarea class="form-control" asp-for="Description" rows="4"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -56,7 +62,7 @@
 
     <div class="col-md-8">
         <div class="inner-content" style="margin-left: 30px;">
-            <h4 class="d-inline-block float-start mt-1">Services</h4>
+            <h4 class="h5 d-inline-block float-start mt-1">Services</h4>
 
             <partial name="_CreateCarWorkshopService" model="new CreateCarWorkshopServiceCommand { CarWorkshopEncodedName = Model.EncodedName }" />
             <div id="services" class="row" data-encoded-name="@Model.EncodedName"><!-- Code From site.js --></div>

@@ -5,6 +5,7 @@ using CarWorkshop.Application.Filters;
 using CarWorkshop.Mvc.Models;
 using CarWorkshop.Mvc.ViewModels;
 using CarWorkshop.Mvc.Extensions;
+using CarWorkshop.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
@@ -29,7 +30,9 @@ public class CarWorkshopController : Controller
     public async Task<IActionResult> Index()
     {
         var carWorkshops = await _mediator.Send(new GetAllCarWorkshopsQuery());
-        return View(carWorkshops);
+        var viewModel = new CarWorkshopViewModel { CarWorkshops = (List<CarWorkshopDTO>)carWorkshops };
+
+        return View(viewModel);
     }
 
     [HttpGet]
